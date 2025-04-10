@@ -1,91 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
+@extends('frontend.layout.app')
+@section('title', 'Movie | Home ')
+@section('content')
+<link
     href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
     rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="icon" href="image/logo.png" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Sign in & Sign up Form</title>
-  </head>
-  <body>
-
-    <header>
-      <div class="navbar-container">
-        <nav class="navbar">
-          <a href="home.html"><div class="logo" >
-            <img src="image/logo.gif" alt=""/>
-         </div></a>
-            <button class="menu-toggle" id="menu-toggle">
-                <i class="ri-menu-line" style="font-size: 24px"></i>
-            </button>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="home.html">Home</a></li>
-                <li><a href="movies.html">Movies</a></li>
-                <li><a href="liveTV.html">LiveTV</a></li>
-                <li><a href="sports.html">Sports</a></li>
-                <li><a href="TVshow.html">TV Shows</a></li>
-                <li><a href="upcoming.html">Upcoming</a></li>
-                <li><a href="kids.html">Kids</a></li>
-                <li class="dropdown">
-                    <a href="#" id="store-btn">Rent
-                        <i class="ri-arrow-drop-down-fill" style="font-weight: bold"></i>
-                    </a>
-                    <ul id="dropdown-menu">
-                        <li><a href="rent-movie.html">Movies</a></li>
-                        <li><a href="rent-show.html">Shows</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" id="search-icon"><i class="ri-search-line" style="font-size: 20px"></i></a>
-                </li>
-
-                <li class="dropdown">
-                  <a href="#" id="profile-btn">
-                    <i class="ri-user-3-line" style="font-size: 20px"></i>
-                  </a>
-                  <ul id="dropdown-menu2">
-                    <li><a href="register-login.html">Login-Signup</a></li>
-                    <li><a href="profile.html">My Profile</a></li>
-                    <li><a href="transactions.html">My Transactions</a></li>
-                     <li><a href="register-login.html" id="logout">Logout</a></li>
-                  </ul>
-                </li>
-
-
-                 <li class="subscri">
-                   <a href="notification.html" id="noti"><i class="fa-solid fa-bell"></i></a>
-                    
-                    <a href="subscribe.html"><button class="subscribe-btn">Subscribe</button></a></li>
-            </ul>
-            
-        </nav>
-        <div class="search-popup" id="search-popup">
-            <input type="text" class="search-input" placeholder="Search...">
-            <button class="search-btn"><i class="ri-search-line" style="font-size: 20px"></i></button>
-        </div>
-    </div>
-    </header>
-
-    
-    <div class="container">
+<main>
+<div class="container">
+  <br><br>
       <div class="forms-container">
         <div class="signin-signup">
-          <form action="#" class="sign-in-form">
+          <form action="{{route('producer.login.loginto')}}" class="sign-in-form" method="POST" enctype="multipart/form-data">
+          @csrf
+
             <h2 class="title">Sign in</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <input type="email" placeholder="Email" name="email" id="email" />
               <div class="error-message"></div>
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" placeholder="Password" name="password" id="password"/>
               <div class="error-message"></div>
             </div>
+            <span>OR</span>
+          <a href="{{route('user.mobile.with.otp')}}">
+            <p class="social-text">Login with OTP</p>
+          </a>
+          <input type="submit" value="Login" class="btn solid" />
+
             <input type="submit" value="Login" class="btn solid" />
             <p class="social-text">Or Sign in with social platforms</p>
             <div class="social-media">
@@ -103,6 +47,7 @@
               </a>
             </div>
           </form>
+
           <form action="#" class="sign-up-form">
             <h2 class="title">Sign up</h2>
             <div class="input-field">
@@ -119,10 +64,12 @@
               <i class="fas fa-lock"></i>
               <input type="password" placeholder="Password" />
               <div class="error-message"></div>
+
+             
             </div><br>
             <input type="submit" class="btn" value="Sign up" />
             
-             <a href="producer-register.html"><p class="social-text">Or Sign up as a Producer</p></a> 
+             <a href="{{route('producer.registration')}}"><p class="social-text">Or Sign up as a Producer</p></a> 
             <p class="social-text">Or Sign up with social platforms</p>
             <div class="social-media">
               <a href="#" class="social-icon">
@@ -153,7 +100,7 @@
               Sign up
             </button>
           </div>
-          <img src="image/log.svg" class="image" alt="" />
+          <img src="{{asset('image/log.svg')}}" class="image" alt="" />
         </div>
         <div class="panel right-panel">
           <div class="content">
@@ -165,62 +112,12 @@
               Sign in
             </button>
           </div>
-          <img src="image/register.svg" class="image" alt="" />
+          <img src="{{asset('image/register.svg')}}" class="image" alt="" />
         </div>
       </div>
-    </div>
-
-    <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-left">
-          <img src="image/logo.gif" alt=" Logo" class="footer-logo" />
-          <p class="footer-text">
-            SHT is an IT company specializing in providing technology
-            solutions and services. The company focuses on various aspects of
-            IT. SHT is an IT company specializing in providing technology
-            solutions and services. The company focuses on various aspects of
-            IT.
-          </p>
-        </div>
-
-        <div class="footer-middle">
-          <h3>Quick Links</h3>
-          <ul>
-            <li><a href="privacy-policy.html">About Us</a></li>
-            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-            <li><a href="privacy-policy.html">Terms & Conditions</a></li>
-            <li><a href="privacy-policy.html">Refund Policy</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-middle">
-          <h3>Quick Links</h3>
-          <ul>
-            <li><a href="privacy-policy.html">About Us</a></li>
-            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-            <li><a href="privacy-policy.html">Terms & Conditions</a></li>
-            <li><a href="privacy-policy.html">Refund Policy</a></li>
-          </ul>
-        </div>
-
-      
-        </div>
-
-        <div class="footer-right">
-          <h3>Connect with us</h3>
-          <div class="social-icons">
-            <a href="#"><img src="image/youtube (1).png" alt="YouTube" /></a>
-            <a href="#"><img src="image/facebook.png" alt="Facebook" /></a>
-            <a href="#"><img src="image/instagram.png" alt="Instagram" /></a>
-          </div>
-      
-      </div>
-      <div class="copyr">
-        <p style=>Copyright © 2020-2025 Software House Technology. All Rights Reserved</p>
-      </div>
-    </footer>
-
-    <script defer src="script.js"></script>
+</div>
+</main>
+    <!-- <script defer src="script.js"></script> -->
     <script>
 document.addEventListener("DOMContentLoaded", function () {
     const signInForm = document.querySelector(".sign-in-form");
@@ -263,38 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
                password.length >= 6;     // At least 6 characters
     }
 
-    // Login Form Validation
-    signInForm.addEventListener("submit", function (e) {
-        e.preventDefault(); // Prevent form submission
-
-        const username = signInForm.querySelector("input[type='text']");
-        const password = signInForm.querySelector("input[type='password']");
-
-        let valid = true;
-
-        if (username.value.trim() === "") {
-            showError(username, "Username is required");
-            valid = false;
-        } else {
-            clearError(username);
-        }
-
-        if (password.value.trim() === "") {
-            showError(password, "Password is required");
-            valid = false;
-        } else {
-            clearError(password);
-        }
-
-        if (valid) {
-            // Dummy credential check (replace this with real authentication)
-            if (username.value === "user" && password.value === "Password123") {
-                showSuccessMessage("Login successful!", "profile.html");
-            } else {
-                showError(password, "Invalid username or password");
-            }
-        }
-    });
+  
 
     // Sign-Up Form Validation
     signUpForm.addEventListener("submit", function (e) {
@@ -386,6 +252,13 @@ function showSuccessMessage(message, redirectUrl = null, delay = 1000) {
     transition: top 0.8s ease-in-out, opacity 0.5s ease-in-out;
     display: none;
 }
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1698px!important;
+        margin: auto;
+      
+    }
+}
     </style>
-  </body>
-</html>
+ 

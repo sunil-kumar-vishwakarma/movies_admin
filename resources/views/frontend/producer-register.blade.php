@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+@extends('frontend.layout.app')
+@section('title', 'Movie | Home ')
+@section('content')
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Producer Registration</title>
@@ -13,32 +13,48 @@
             font-family: "Poppins", sans-serif;
         }
         body {
-            display: flex;
+            /* display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             background-color: rgb(4, 4, 24);
-            padding: 20px;
+            padding: 20px; */
+            background-color: rgb(4, 4, 24);
         }
-        .container {
+        .form {
+            display: block;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0rem 5rem;
+            transition: all 0.2s 0.7s;
+            overflow: hidden;
+            grid-column: 1 / 2;
+            grid-row: 1 / 2;
+        }
+
+        .container-producer {
+         
+            margin-left: 116px;
             display: flex;
-            width: 90%;
-            max-width: 1000px;
+            width: 100%;
+            max-width: 1420px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             overflow: hidden;
             backdrop-filter: blur(12px);
             box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.3);
+
         }
         .image-section {
          
            width: 40%;
-            background: url('image/producer.jpeg') no-repeat center center/cover;
+            background: url('/image/producer.jpeg') no-repeat center center/cover;
              min-height: 500px; /* Ensures the section has a proper height */
         }
         .form-section {
-               width: 70%;
-             padding: 20px;
+            width: 70%;
+            padding: 20px;
             color: white;
         }
         h2 {
@@ -91,7 +107,7 @@
             background: #e63e00;
         }
         @media (max-width: 768px) {
-            .container {
+            .container-producer {
                 flex-direction: column;
             }
             .image-section {
@@ -102,18 +118,38 @@
                 width: 100%;
             }
         }
+        .container-div{
+            margin-top: 108px;
+        }
     </style>
-</head>
-<body>
-    <div class="container">
+<main>
+    <div class="container-div"></div>
+    
+    
+    <div class="container-producer">
         <div class="image-section"></div>
         <div class="form-section">
             <h2>Producer Registration</h2>
-            <form id="registrationForm" >
-                <div class="grid">
+
+            
+    @if ($errors->any())
+        <div style="color:red;">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    
+            <form class="form" id="registrationForm" action="{{ route('producer.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+
+
+            <div class="grid">
                     <div class="input-group">
                         <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" placeholder="Enter your full name" required />
+                        <input type="text" id="name" name="full_name" placeholder="Enter your full name" required />
                     </div>
                     <div class="input-group">
                         <label for="email">Email</label>
@@ -151,6 +187,9 @@
             </form>
         </div>
     </div>
+    <div></div>
+    <br><br><br><br><br><br><br>
+</main>
     <script>
         document.getElementById("registrationForm").addEventListener("submit", function (event) {
             let password = document.getElementById("password").value;
@@ -161,5 +200,4 @@
             }
         });
     </script>
-</body>
-</html>
+

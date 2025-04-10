@@ -11,4 +11,19 @@ class UserController extends Controller
         return view('admin.user');
     }
 
+    public function userLogin(){
+
+        return view('frontend.register-login');
+    }
+
+    public function userLoginWithMobileOtp(){
+
+        return view('frontend.loginWithOTP1');
+    }
+
+    public function userLoginWithVerifyOtp(){
+
+        return view('frontend.loginWithOTP2');
+    }
+
 }

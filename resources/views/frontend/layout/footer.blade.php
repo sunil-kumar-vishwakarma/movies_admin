@@ -1,7 +1,7 @@
 <footer class="footer">
       <div class="footer-container">
         <div class="footer-left">
-          <img src="image/logo.gif" alt=" Logo" class="footer-logo" />
+          <img src="{{asset('image/logo.gif')}}" alt=" Logo" class="footer-logo" />
           <p class="footer-text">
             SHT is an IT company specializing in providing technology
             solutions and services. The company focuses on various aspects of
@@ -37,9 +37,9 @@
         <div class="footer-right">
           <h3>Connect with us</h3>
           <div class="social-icons">
-            <a href="#"><img src="image/youtube (1).png" alt="YouTube" /></a>
-            <a href="#"><img src="image/facebook.png" alt="Facebook" /></a>
-            <a href="#"><img src="image/instagram.png" alt="Instagram" /></a>
+            <a href="#"><img src="{{asset('image/youtube (1).png')}}" alt="YouTube" /></a>
+            <a href="#"><img src="{{asset('image/facebook.png')}}" alt="Facebook" /></a>
+            <a href="#"><img src="{{asset('image/instagram.png')}}" alt="Instagram" /></a>
           </div>
       
       </div>

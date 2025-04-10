@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\ProducerController;
+use App\Http\Controllers\UserController;
 
 
 
@@ -17,6 +19,13 @@ Route::get('/upcoming', [HomeController::class, 'upcoming'])->name('upcoming');
 Route::get('/kids', [HomeController::class, 'kids'])->name('kids');
 Route::get('/rentMovies', [HomeController::class, 'rentMovies'])->name('rent.movies');
 Route::get('/rentShows', [HomeController::class, 'rentShows'])->name('rent.shows');
+Route::get('/user/login', [UserController::class, 'userLogin'])->name('user.login');
+Route::get('/user/login/mobile/number', [UserController::class, 'userLoginWithMobileOtp'])->name('user.mobile.with.otp');
+Route::get('/user/login/mobile/number_verify', [UserController::class, 'userLoginWithVerifyOtp'])->name('user.mobile.with.otpverify');
+
+// Route::post('/user/login', [ProducerController::class, 'producerLogin'])->name('producer.login.loginto');
+
+
 // Route::get('/', [HomeController::class, 'home'])->name('home');
 
 // Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.submit');

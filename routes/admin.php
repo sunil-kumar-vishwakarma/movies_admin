@@ -23,6 +23,11 @@ use App\Http\Controllers\AdMobController;
 use App\Http\Controllers\BannerModelController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\VideoTypeController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\SeasonController;
+use App\Http\Controllers\AvatarController;
 
 
 // Admin Login Routes
@@ -34,12 +39,34 @@ Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.lo
 Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
-    Route::get('/admin/types', [BasicItemController::class, 'index'])->name('admin.basic-item.types');
-    Route::get('/admin/category', [BasicItemController::class, 'category'])->name('admin.basic-item.category');
-    Route::get('/admin/language', [BasicItemController::class, 'language'])->name('admin.basic-item.language');
-    Route::get('/admin/season', [BasicItemController::class, 'season'])->name('admin.basic-item.season');
-    Route::get('/admin/avatar', [BasicItemController::class, 'avatar'])->name('admin.basic-item.avatar');
+    // Route::get('/admin/types', [BasicItemController::class, 'index'])->name('admin.basic-item.types');
+    Route::get('/admin/types', [VideoTypeController::class, 'index'])->name('admin.basic-item.types');
+    Route::post('/admin/types/add', [VideoTypeController::class, 'store'])->name('admin.basic-item.add');
+    Route::post('/admin/types/update/{id}', [VideoTypeController::class, 'update'])->name('admin.basic-item.update');
+    Route::delete('/admin/types/delete/{id}', [VideoTypeController::class, 'destroy'])->name('admin.basic-item.delete');
 
+
+    Route::get('/admin/category', [CategoryController::class, 'index'])->name('admin.basic-item.category');
+    Route::post('/admin/category/store', [CategoryController::class, 'store'])->name('admin.basic-item-category.store');
+    Route::post('/admin/category/update/{id}', [CategoryController::class, 'update'])->name('admin.basic-item-category.update');
+    Route::delete('/admin/category/delete/{id}', [CategoryController::class, 'destroy'])->name('admin.basic-item-category.delete');
+    
+    Route::get('/admin/language', [LanguageController::class, 'index'])->name('admin.basic-item.language');
+    Route::post('/admin/language/store', [LanguageController::class, 'store'])->name('admin.basic-item-language.store');
+    Route::post('/admin/language/update/{id}', [LanguageController::class, 'update'])->name('admin.basic-item-language.update');
+    Route::delete('/admin/language/delete/{id}', [LanguageController::class, 'destroy'])->name('admin.basic-item-language.delete');
+    
+
+    Route::get('/admin/season', [SeasonController::class, 'index'])->name('admin.basic-item.season');
+    Route::post('/admin/season/store', [SeasonController::class, 'store'])->name('admin.basic-item-season.store');
+    Route::post('/admin/season/update/{id}', [SeasonController::class, 'update'])->name('admin.basic-item-season.update');
+    Route::delete('/admin/season/delete/{id}', [SeasonController::class, 'destroy'])->name('admin.basic-item-season.delete');
+    
+    Route::get('/admin/avatar', [AvatarController::class, 'index'])->name('admin.basic-item.avatar');
+    Route::post('/admin/avatar/store', [AvatarController::class, 'store'])->name('admin.basic-item-avatar.store');
+    Route::post('/admin/avatar/update/{id}', [AvatarController::class, 'update'])->name('admin.basic-item-avatar.update');
+    Route::delete('/admin/avatar/delete/{id}', [AvatarController::class, 'destroy'])->name('admin.basic-item-avatar.delete');
+    
     // producer
     Route::get('/admin/producer', [ProducerController::class, 'producer'])->name('admin.producer');
 

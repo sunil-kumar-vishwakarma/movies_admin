@@ -7,7 +7,7 @@ color: #ff3d00!important;
   </style>
           <nav class="navbar">
             <a href="{{url('/')}}"><div class="logo" >
-              <img src="image/logo.gif" alt=""/>
+              <img src="{{asset('image/logo.gif')}}" alt=""/>
            </div></a>
               <button class="menu-toggle" id="menu-toggle">
                   <i class="ri-menu-line" style="font-size: 24px"></i>
@@ -40,7 +40,7 @@ color: #ff3d00!important;
                         <i class="ri-user-3-line" style="font-size: 20px"></i>
                     </a>
                     <ul id="dropdown-menu2">
-                        <li><a href="register-login.html">Login-Signup</a></li>
+                        <li><a href="{{route('user.login')}}">Login-Signup</a></li>
                         <li><a href="profile.html">My Profile</a></li>
                         <li><a href="transactions.html">My Transactions</a></li>
                         <li><a href="register-login.html" class="logout">Logout</a></li>
