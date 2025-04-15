@@ -34,6 +34,7 @@
 
                     </div>
 
+                    @foreach($videos as $rows)
                     <div class="video-card">
                         <div class="video-image">
                             <div class="video-card-overlay">
@@ -46,15 +47,23 @@
                                     <button class="delete-btn" id="open-delete-modal"><i class="fas fa-trash"></i></button>
                                 </div>
                             </div>
-                            <img src="https://i0.wp.com/highschool.latimes.com/wp-content/uploads/2018/06/share-1.jpg?fit=1200%2C630&ssl=1"
-                                alt="Thumbnail" class="video-thumbnail">
+                            @if($rows->thumbnail_image)
+                  
+                        <img src="{{ asset('/' . $rows->thumbnail_image) }}" class="video-thumbnail">
+                    @else
+                    <img src="https://i0.wp.com/highschool.latimes.com/wp-content/uploads/2018/06/share-1.jpg?fit=1200%2C630&ssl=1"
+                    alt="Thumbnail" class="video-thumbnail">
+                    @endif
+
+                            
                         </div>
                         <div class="video-info">
-                            <div class="video-title">Avengers: Infinity War</div>
+                            <div class="video-title">Avengers: {{$rows->movies_name}}</div>
                             <button class="toggle-show-btn">Show</button>
                         </div>
                     </div>
-                    <div class="video-card">
+                    @endforeach
+                    <!-- <div class="video-card">
                         <div class="video-image">
                             <div class="video-card-overlay">
                                 <button class="play-btn"><i class="fas fa-play"></i></button>
@@ -73,7 +82,7 @@
                             <div class="video-title">Avengers: Endgame</div>
                             <button class="toggle-show-btn">Show</button>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- Repeat the above video-card div for each video -->
                 </div>

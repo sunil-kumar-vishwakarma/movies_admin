@@ -69,12 +69,19 @@ Route::middleware(['auth:admin'])->group(function () {
     
     // producer
     Route::get('/admin/producer', [ProducerController::class, 'producer'])->name('admin.producer');
+    Route::post('/admin/producer/update/{id}', [ProducerController::class, 'update'])->name('admin.producer.update');
+    Route::delete('/admin/producer/delete/{id}', [ProducerController::class, 'destroy'])->name('admin.producer.delete');
 
     // user
     Route::get('/admin/user', [UserController::class, 'user'])->name('admin.user');
+    Route::post('/admin/user/update/{id}', [UserController::class, 'update'])->name('admin.user.update');
+    Route::delete('/admin/user/destroy/{id}', [UserController::class, 'destroy'])->name('admin.user.destroy');
 
     // cast
     Route::get('/admin/cast', [CastController::class, 'cast'])->name('admin.cast');
+    Route::post('/admin/cast/add', [CastController::class, 'store'])->name('admin.cast.store');
+    Route::post('/admin/cast/update/{id}', [CastController::class, 'update'])->name('admin.cast.update');
+    Route::delete('/admin/cast/delete/{id}', [CastController::class, 'destroy'])->name('admin.cast.destroy');
 
     // banner
     Route::get('/admin/home', [BannerController::class, 'home'])->name('admin.banner.home');
@@ -86,6 +93,11 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/watchtime', [VideosController::class, 'watchtime'])->name('admin.watchtime');
     Route::get('/admin/videos', [VideosController::class, 'videos'])->name('admin.videos.videos');
     Route::get('/admin/videos/add', [VideosController::class, 'addvideos'])->name('admin.videos.addvideo');
+    Route::post('/admin/videos/video_320', [VideosController::class, 'uploadVideo320'])->name('upload.video.320');
+    Route::post('/admin/videos/video_480', [VideosController::class, 'uploadVideo480'])->name('upload.video.480');
+    Route::post('/admin/videos/video_720', [VideosController::class, 'uploadVideo720'])->name('upload.video.720');
+    Route::post('/admin/videos/video_1080', [VideosController::class, 'uploadVideo1080'])->name('upload.video.1080');
+    Route::post('/admin/videos/store', [VideosController::class, 'store'])->name('admin.videos.store');
     Route::get('/admin/videos/edit', [VideosController::class, 'edit'])->name('admin.videos.edit');
 
     // tv shows

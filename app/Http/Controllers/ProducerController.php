@@ -11,7 +11,8 @@ class ProducerController extends Controller
 {
     public function producer()
     {
-        return view('admin.producer');
+        $producer = Producer::all();
+        return view('admin.producer', compact('producer'));
     }
 
 
@@ -87,7 +88,7 @@ public function sendOtpToPhone(Request $request)
     // Update the OTP in the producer record
     $producer->update(['otp' => $otp]);
 
-    \Log::info("OTP for phone {$request->phone} is: $otp");
+    // \Log::info("OTP for phone {$request->phone} is: $otp");
 
     return redirect()->route('user.mobile.with.otpverify')
         ->with([
@@ -106,7 +107,8 @@ public function verifyOtp(Request $request)
     ]);
 
     $phone = Session::get('otp_phone');
-
+    $otp = implode('', $request->otp); // "1234"
+    // print_r($otp);die;
     // Find producer by phone and match OTP
     $producer = Producer::where('phone', $phone)
                         ->where('otp', $request->otp)
@@ -168,26 +170,42 @@ public function verifyOtp(Request $request)
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string',
+            'user_name' => 'required|string',
+            'full_name' => 'required|string',
+            // 'email' => 'nullable|string|email|unique:producers',
+            // 'password' => 'required|string|min:6',
+            'phone' => 'nullable|string',
+            // 'company' => 'nullable|string',
+            // 'genre' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $language = Producer::find($id);
-        $data = $request->only('name');
+        $producer = Producer::find($id);
+
+        if (!$producer) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Producer not found.'
+            ], 404);
+        }
+
+        $data = $request->all();
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('uploads/categories'), $filename);
-            $data['image'] = 'uploads/categories/' . $filename;
+            $image->move(public_path('uploads/producer'), $filename);
+            $data['image'] = 'uploads/producer/' . $filename;
         }
 
-        $language->update($data);
+        $producer->update($data);
+
+
 
         return response()->json([
             'success' => true,
-            'message' => 'language updated successfully.',
-            'data' => $language // optional, if you want to return updated data
+            'message' => 'producer updated successfully.',
+            'data' => $producer // optional, if you want to return updated data
         ]);
 
     }

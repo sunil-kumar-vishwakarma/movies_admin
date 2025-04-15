@@ -21,7 +21,11 @@ class Authenticate extends Middleware
         if ($request->is('producer') || $request->is('producer/*')) {
             return route('user.login');
         }
+
+        if ($request->is('user') || $request->is('user/*')) {
+            return route('user.login');
+        }
     
-        return route('login'); // Optional: If you have normal user login
+        return route('user.login'); // Optional: If you have normal user login
     }
 }

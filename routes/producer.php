@@ -13,8 +13,6 @@ use App\Http\Controllers\UserController;
 
 Route::get('/producer/registration', [ProducerController::class, 'producerRegistration'])->name('producer.registration');
 Route::post('/producer/login', [ProducerController::class, 'producerLogin'])->name('producer.login.loginto');
-Route::post('/producer/sendOtpToPhone', [ProducerController::class, 'sendOtpToPhone'])->name('producer.sendOtpToPhone');
-Route::post('/producer/verify-otp', [ProducerController::class, 'verifyOtp'])->name('producer.verifyOtp');
 
 Route::post('/producer/add', [ProducerController::class, 'store'])->name('producer.store');
 

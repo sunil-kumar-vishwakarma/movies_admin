@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\api\ApiUserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post('/user/loginOrRegisterWithOtp', [ApiUserController::class, 'loginOrRegisterWithOtp']);
+Route::post('/user/verify_otp', [ApiUserController::class, 'verifyOtp']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

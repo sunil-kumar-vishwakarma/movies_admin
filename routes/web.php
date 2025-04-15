@@ -23,6 +23,21 @@ Route::get('/user/login', [UserController::class, 'userLogin'])->name('user.logi
 Route::get('/user/login/mobile/number', [UserController::class, 'userLoginWithMobileOtp'])->name('user.mobile.with.otp');
 Route::get('/user/login/mobile/number_verify', [UserController::class, 'userLoginWithVerifyOtp'])->name('user.mobile.with.otpverify');
 
+Route::post('/producer/sendOtpToPhone', [UserController::class, 'sendOtpToPhone'])->name('producer.sendOtpToPhone');
+Route::post('/producer/verify-otp', [UserController::class, 'verifyOtp'])->name('producer.verifyOtp');
+
+
+Route::post('/user/add', [UserController::class, 'store'])->name('user.store');
+Route::post('/user/login', [UserController::class, 'login'])->name('user.login');
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/user/profile', [UserController::class, 'userProfile'])->name('user.profile');
+    Route::post('/user/profile/update/{id}', [UserController::class, 'profileUpdate'])->name('user.profile.update');
+});
+
+
+
 // Route::post('/user/login', [ProducerController::class, 'producerLogin'])->name('producer.login.loginto');
 
 

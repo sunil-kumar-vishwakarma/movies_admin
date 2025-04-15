@@ -41,7 +41,7 @@ color: #ff3d00!important;
                     </a>
                     <ul id="dropdown-menu2">
                         <li><a href="{{route('user.login')}}">Login-Signup</a></li>
-                        <li><a href="profile.html">My Profile</a></li>
+                        <li><a href="{{route('user.profile')}}">My Profile</a></li>
                         <li><a href="transactions.html">My Transactions</a></li>
                         <li><a href="register-login.html" class="logout">Logout</a></li>
                     </ul>

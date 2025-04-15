@@ -48,21 +48,22 @@
             </div>
           </form>
 
-          <form action="#" class="sign-up-form">
+          <form action="{{route('user.store')}}" class="sign-up-form" method="POST" enctype="multipart/form-data">
+          @csrf
             <h2 class="title">Sign up</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <input type="text" placeholder="Username" name="user_name"/>
               <div class="error-message"></div>
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
+              <input type="email" placeholder="Email" name="email" />
               <div class="error-message"></div>
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" placeholder="Password" name="password"/>
               <div class="error-message"></div>
 
              
@@ -163,43 +164,43 @@ document.addEventListener("DOMContentLoaded", function () {
   
 
     // Sign-Up Form Validation
-    signUpForm.addEventListener("submit", function (e) {
-        e.preventDefault(); // Prevent form submission
+    // signUpForm.addEventListener("submit", function (e) {
+    //     e.preventDefault(); // Prevent form submission
 
-        const username = signUpForm.querySelector("input[type='text']");
-        const email = signUpForm.querySelector("input[type='email']");
-        const password = signUpForm.querySelector("input[type='password']");
+    //     const username = signUpForm.querySelector("input[type='text']");
+    //     const email = signUpForm.querySelector("input[type='email']");
+    //     const password = signUpForm.querySelector("input[type='password']");
 
-        let valid = true;
+    //     let valid = true;
 
-        if (username.value.trim() === "") {
-            showError(username, "Username is required");
-            valid = false;
-        } else {
-            clearError(username);
-        }
+    //     if (username.value.trim() === "") {
+    //         showError(username, "Username is required");
+    //         valid = false;
+    //     } else {
+    //         clearError(username);
+    //     }
 
-        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (!emailPattern.test(email.value.trim())) {
-            showError(email, "Enter a valid email");
-            valid = false;
-        } else {
-            clearError(email);
-        }
+    //     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    //     if (!emailPattern.test(email.value.trim())) {
+    //         showError(email, "Enter a valid email");
+    //         valid = false;
+    //     } else {
+    //         clearError(email);
+    //     }
 
-        if (!validatePassword(password.value.trim())) {
-            showError(password, "Password must be at least 6 characters with one uppercase & one lowercase");
-            valid = false;
-        } else {
-            clearError(password);
-        }
+    //     if (!validatePassword(password.value.trim())) {
+    //         showError(password, "Password must be at least 6 characters with one uppercase & one lowercase");
+    //         valid = false;
+    //     } else {
+    //         clearError(password);
+    //     }
 
-        if (valid) {
-            // Simulate successful registration
-            showSuccessMessage("Registration successful!", "profile.html", 1000);
+    //     if (valid) {
+    //         // Simulate successful registration
+    //         showSuccessMessage("Registration successful!", "{{ route('user.profile') }}", 1000);
           
-        }
-    });
+    //     }
+    // });
 
     // Function to show success message
 function showSuccessMessage(message, redirectUrl = null, delay = 1000) {
