@@ -48,7 +48,7 @@
                 <tr>
                     <td>{{$rows->id}}</td>
                     <td> @if($rows->image)
-                  
+
                   <img src="{{ asset('/' . $rows->image) }}" width="60" alt="Image">
               @else
               <img class="icon-logo"
@@ -61,14 +61,14 @@
                     <td>{{$rows->register_date}}</td>
                     <td>{{$rows->type}}</td>
                     <td>
-                    <button id="open-edit-modal" class="btn btn-sm btn-primary edit-btn" 
-                                data-id="{{ $rows->id }}" 
+                    <button id="open-edit-modal" class="btn btn-sm btn-primary edit-btn"
+                                data-id="{{ $rows->id }}"
                                 data-user_name="{{ $rows->user_name }}" data-full_name="{{ $rows->full_name}}" data-email="{{ $rows->email}}" data-phone="{{ $rows->phone}}"
                                 data-image="{{ $rows->image}}" data-register_date="{{ $rows->register_date}}" data-type="{{ $rows->type}}">
                             <i class="fas fa-edit"></i>
                         </button>
 
-                        <button id="open-delete-modal" class="btn btn-sm btn-danger delete-btn" 
+                        <button id="open-delete-modal" class="btn btn-sm btn-danger delete-btn"
                                 data-id="{{ $rows->id }}">
                             <i class="fas fa-trash"></i>
                         </button>
@@ -151,7 +151,7 @@
                     <input type="file" id="edit-image" name="image">
                     <img id="edit-preview" src=" " style="max-width:100px; margin-top:10px;">
                     <input type="hidden" id="edit-id" name="id" placeholder="Enter Name" required>
-           
+
 
                 </div>
                 <div class="form-group">
@@ -234,11 +234,11 @@ $(document).ready(function () {
         $('#editModal').modal('show');
     });
 
-    
+
     // Submit Edit Form
 $('#edit-form').submit(function (e) {
     e.preventDefault();
-    
+
     let formData = new FormData(this);
     let id = $('#edit-id').val();
 // console.log(formData);
@@ -291,7 +291,7 @@ console.log(id);
     $.ajax({
         url: '/admin/user/destroy/' + id,
         type: 'DELETE',
-       
+
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },

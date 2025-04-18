@@ -29,6 +29,8 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\SeasonController;
 use App\Http\Controllers\EpisodeController;
 use App\Http\Controllers\AvatarController;
+use App\Http\Controllers\LiveController;
+use App\Http\Controllers\KidsController;
 
 
 // Admin Login Routes
@@ -51,23 +53,23 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('/admin/category/store', [CategoryController::class, 'store'])->name('admin.basic-item-category.store');
     Route::post('/admin/category/update/{id}', [CategoryController::class, 'update'])->name('admin.basic-item-category.update');
     Route::delete('/admin/category/delete/{id}', [CategoryController::class, 'destroy'])->name('admin.basic-item-category.delete');
-    
+
     Route::get('/admin/language', [LanguageController::class, 'index'])->name('admin.basic-item.language');
     Route::post('/admin/language/store', [LanguageController::class, 'store'])->name('admin.basic-item-language.store');
     Route::post('/admin/language/update/{id}', [LanguageController::class, 'update'])->name('admin.basic-item-language.update');
     Route::delete('/admin/language/delete/{id}', [LanguageController::class, 'destroy'])->name('admin.basic-item-language.delete');
-    
+
 
     Route::get('/admin/season', [SeasonController::class, 'index'])->name('admin.basic-item.season');
     Route::post('/admin/season/store', [SeasonController::class, 'store'])->name('admin.basic-item-season.store');
     Route::post('/admin/season/update/{id}', [SeasonController::class, 'update'])->name('admin.basic-item-season.update');
     Route::delete('/admin/season/delete/{id}', [SeasonController::class, 'destroy'])->name('admin.basic-item-season.delete');
-    
+
     Route::get('/admin/avatar', [AvatarController::class, 'index'])->name('admin.basic-item.avatar');
     Route::post('/admin/avatar/store', [AvatarController::class, 'store'])->name('admin.basic-item-avatar.store');
     Route::post('/admin/avatar/update/{id}', [AvatarController::class, 'update'])->name('admin.basic-item-avatar.update');
     Route::delete('/admin/avatar/delete/{id}', [AvatarController::class, 'destroy'])->name('admin.basic-item-avatar.delete');
-    
+
     // producer
     Route::get('/admin/producer', [ProducerController::class, 'producer'])->name('admin.producer');
     Route::post('/admin/producer/update/{id}', [ProducerController::class, 'update'])->name('admin.producer.update');
@@ -90,6 +92,17 @@ Route::middleware(['auth:admin'])->group(function () {
     // section
     Route::get('/admin/index', [SectionController::class, 'index'])->name('admin.section.index');
 
+    Route::get('/admin/live', [LiveController::class, 'live'])->name('admin.live.index');
+    Route::get('/admin/live/edit', [LiveController::class, 'edit'])->name('admin.live.edit');
+    Route::get('/admin/live/addvideo', [LiveController::class, 'addvideo'])->name('admin.live.addvideo');
+
+    Route::get('/admin/kids/add', [KidsController::class, 'add'])->name('admin.kids.add');
+    Route::get('/admin/kids/addepisode', [KidsController::class, 'addepisode'])->name('admin.kids.addepisode');
+    Route::get('/admin/kids/edit', [KidsController::class, 'edit'])->name('admin.kids.edit');
+    Route::get('/admin/kids', [KidsController::class, 'kids'])->name('admin.kids.index');
+    Route::get('/admin/kids/list', [KidsController::class, 'list'])->name('admin.kids.list');
+    Route::get('/admin/kids/editepisode', [KidsController::class, 'editepisode'])->name('admin.kids.editepisode');
+
     // videos
     Route::get('/admin/watchtime', [VideosController::class, 'watchtime'])->name('admin.watchtime');
     Route::get('/admin/videos', [VideosController::class, 'videos'])->name('admin.videos.videos');
@@ -106,12 +119,12 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/tvshows/addtvshows', [TVshowsController::class, 'addtvshows'])->name('admin.tvshows.add');
     Route::post('/admin/tvshows/store', [TVshowsController::class, 'store'])->name('admin.tvshows.store');
     Route::get('/admin/tvshows/edit', [TVshowsController::class, 'edit'])->name('admin.tvshows.edit');
- 
+
     Route::get('/admin/episode/list', [EpisodeController::class, 'list'])->name('admin.tvshows.list');
-    Route::get('/admin/episode/addepisode', [EpisodeController::class, 'addepisode'])->name('admin.tvshows.addepisode'); 
+    Route::get('/admin/episode/addepisode', [EpisodeController::class, 'addepisode'])->name('admin.tvshows.addepisode');
     Route::post('/admin/episode/store', [EpisodeController::class, 'store'])->name('admin.episode.store');
     Route::get('/admin/episode/editepisode', [EpisodeController::class, 'editepisode'])->name('admin.tvshows.editepisode');
-    
+
     // upcomming
     Route::get('/admin/upcoming', [UpcomingController::class, 'upcoming'])->name('admin.upcoming.video');
     Route::get('/admin/upcoming/add', [UpcomingController::class, 'addvideo'])->name('admin.upcoming.addupvideo');

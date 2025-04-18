@@ -59,6 +59,18 @@
         </li>
 
 
+        <li class="{{ request()->routeIs('admin.live.index') ? 'active' : '' }}">
+            <a href="{{ route('admin.live.index') }}">
+                <i class="fas fa-broadcast-tower"></i> Live
+            </a>
+        </li>
+
+        <li class="{{ request()->routeIs('admin.kids.index') ? 'active' : '' }}">
+            <a href="{{ route('admin.kids.index') }}">
+                <i class="fas fa-child"></i> Kids
+            </a>
+        </li>
+
         <li class="{{ request()->routeIs('admin.videos.videos') ? 'active' : '' }}">
             <a href="{{ route('admin.videos.videos') }}"><i class="fas fa-play-circle"></i> Videos</a>
         </li>
