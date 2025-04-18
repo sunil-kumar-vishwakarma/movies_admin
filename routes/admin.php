@@ -146,6 +146,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/admob', [AdMobController::class, 'admob'])->name('admin.admob');
 
     Route::get('/admin/bannermodel', [BannerModelController::class, 'bannermodel'])->name('admin.bannermodel');
+    Route::post('/admin/bannermodel/store', [BannerModelController::class, 'store'])->name('admin.bannermodel.store');
 
     Route::get('/admin/adsvideo', [BannerModelController::class, 'adsvideo'])->name('admin.adsvideo');
 

@@ -546,6 +546,7 @@ class ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Controllers\\VideoTypeController' => __DIR__ . '/../..' . '/app/Http/Controllers/VideoTypeController.php',
         'App\\Http\\Controllers\\VideosController' => __DIR__ . '/../..' . '/app/Http/Controllers/VideosController.php',
+        'App\\Http\\Controllers\\api\\ApiHomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/api/ApiHomeController.php',
         'App\\Http\\Controllers\\api\\ApiUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/api/ApiUserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',

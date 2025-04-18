@@ -36,6 +36,7 @@ return array(
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Http\\Controllers\\VideoTypeController' => $baseDir . '/app/Http/Controllers/VideoTypeController.php',
     'App\\Http\\Controllers\\VideosController' => $baseDir . '/app/Http/Controllers/VideosController.php',
+    'App\\Http\\Controllers\\api\\ApiHomeController' => $baseDir . '/app/Http/Controllers/api/ApiHomeController.php',
     'App\\Http\\Controllers\\api\\ApiUserController' => $baseDir . '/app/Http/Controllers/api/ApiUserController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',

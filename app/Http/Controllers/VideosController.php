@@ -17,8 +17,8 @@ class VideosController extends Controller
     }
     public function addvideos()
     {
-        
-        return view('admin.videos.addvideo');
+        $types = VideoType::all();
+        return view('admin.videos.addvideo',compact());
     }
     // public function edit()
     // {
