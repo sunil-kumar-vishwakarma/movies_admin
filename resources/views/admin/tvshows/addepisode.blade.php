@@ -10,25 +10,28 @@
             </a>
         </div>
         <div class="video-details-container">
-
+        <form action="{{route('admin.episode.store')}}" method="post" enctype="multipart/form-data">
+        @csrf
+        
+        <input type="hidden" id="tv_show_id" name="tv_show_id" placeholder="Enter Episode Name" value="1" required>
             <div class="input-grid4">
                 <div class="filter-group">
                     <div class="input-row">
                         <div class="section-form">
-                            <label for="Language">Name *</label>
-                            <input type="text" id="Language" name="Language" placeholder="Enter Episode Name" required>
+                            <label for="episode_name">Name *</label>
+                            <input type="text" id="episode_name" name="episode_name" placeholder="Enter Episode Name" required>
                         </div>
                     </div>
                 </div>
                 <div class="filter-group">
                     <label class="input-label">Season*</label>
-                    <select class="video-select">
+                    <select class="video-select" id="season" name="season">
                         <option>Select Season</option>
-                        <option>Season 1</option>
-                        <option>Season 2</option>
-                        <option>Season 3</option>
-                        <option>Season 4</option>
-                        <option>Season 5</option>
+                        <option value="season 1">Season 1</option>
+                        <option value="season 1">Season 2</option>
+                        <option value="season 1">Season 3</option>
+                        <option value="season 1">Season 4</option>
+                        <option value="season 1">Season 5</option>
                     </select>
                 </div>
             </div>
@@ -40,10 +43,10 @@
             <div class="input-grid6">
                 <div class="filter-group1">
                     <label class="input-label">Video Upload Type*</label>
-                    <select class="video-select" style="margin-top: 10px;">
+                    <select class="video-select" style="margin-top: 10px;" id="video_upload_type" name="video_upload_type">
                         <option>Select Type</option>
-                        <option>External URL</option>
-                        <option>YouTube</option>
+                        <option value="External URL">External URL</option>
+                        <option value="you Tube">YouTube</option>
                     </select>
                     <p class="tmdb-note">
                         Note : If you select YouTube, you must enter the ID of the YouTube video, Not a Full URL. For
@@ -57,11 +60,11 @@
                     <h4 class="filter-title">Is Premium *</h4>
                     <div class="input-row1">
                         <div class="input-item">
-                            <input type="radio" id="upload-asc" name="order-by-upload" value="asc">
+                            <input type="radio" id="is_premium" name="is_premium" value="asc">
                             <label for="upload-asc">Yes</label>
                         </div>
                         <div class="input-item">
-                            <input type="radio" id="upload-desc" name="order-by-upload" value="desc" checked>
+                            <input type="radio" id="is_premium" name="is_premium" value="desc" checked>
                             <label for="upload-desc">No</label>
                         </div>
                     </div>
@@ -70,11 +73,11 @@
                     <h4 class="filter-title">Is Title *</h4>
                     <div class="input-row1">
                         <div class="input-item">
-                            <input type="radio" id="upload-asc" name="order-by-upload" value="asc">
+                            <input type="radio" id="is_title" name="is_title" value="asc">
                             <label for="upload-asc">Yes</label>
                         </div>
                         <div class="input-item">
-                            <input type="radio" id="upload-desc" name="order-by-upload" value="desc" checked>
+                            <input type="radio" id="is_title" name="is_title" value="desc" checked>
                             <label for="upload-desc">No</label>
                         </div>
                     </div>
@@ -83,11 +86,11 @@
                     <h4 class="filter-title">Is Download *</h4>
                     <div class="input-row1">
                         <div class="input-item">
-                            <input type="radio" id="upload-asc" name="order-by-upload" value="asc">
+                            <input type="radio" id="is_download" name="is_download" value="asc">
                             <label for="upload-asc">Yes</label>
                         </div>
                         <div class="input-item">
-                            <input type="radio" id="upload-desc" name="order-by-upload" value="desc" checked>
+                            <input type="radio" id="is_download" name="is_download" value="desc" checked>
                             <label for="upload-desc">No</label>
                         </div>
                     </div>
@@ -96,11 +99,11 @@
                     <h4 class="filter-title">Is Like *</h4>
                     <div class="input-row1">
                         <div class="input-item">
-                            <input type="radio" id="upload-asc" name="order-by-upload" value="asc">
+                            <input type="radio" id="is_like" name="is_like" value="asc">
                             <label for="upload-asc">Yes</label>
                         </div>
                         <div class="input-item">
-                            <input type="radio" id="upload-desc" name="order-by-upload" value="desc" checked>
+                            <input type="radio" id="is_like" name="is_like" value="desc" checked>
                             <label for="upload-desc">No</label>
                         </div>
                     </div>
@@ -112,28 +115,28 @@
             <div class="input-grid3">
                 <div class="input-group">
                     <label class="input-label">Upload Video (320 px)*</label>
-                    <input type="file" class="video-input">
+                    <input type="file" class="video-input" name="upload_video_320_px" id="upload_video_320_px">
                     <button class="Upload-btn"> Upload Files</button>
 
                 </div>
 
                 <div class="input-group">
                     <label class="input-label">Upload Video (480 px) </label>
-                    <input type="file" class="video-input">
+                    <input type="file" class="video-input" name="upload_video_480_px" id="upload_video_480_px">
                     <button class="Upload-btn"> Upload Files</button>
 
                 </div>
 
                 <div class="input-group">
                     <label class="input-label">Upload Video (720 px) </label>
-                    <input type="file" class="video-input">
+                    <input type="file" class="video-input" name="upload_video_720_px" id="upload_video_720_px">
                     <button class="Upload-btn"> Upload Files</button>
 
                 </div>
 
                 <div class="input-group">
                     <label class="input-label">Upload Video (1080 px) </label>
-                    <input type="file" class="video-input">
+                    <input type="file" class="video-input" name="upload_video_1080_px" id="upload_video_1080_px">
                     <button class="Upload-btn"> Upload Files</button>
 
                 </div>
@@ -144,9 +147,9 @@
             <div class="language-grid">
                 <div class="filter-group">
                     <label class="input-label">Subtitle Type*</label>
-                    <select class="video-select">
-                        <option>Server Video</option>
-                        <option>External URL</option>
+                    <select class="video-select" name="sub_title_type" id="sub_title_type">
+                        <option value="server video">Server Video</option>
+                        <option value="External url">External URL</option>
                     </select>
                 </div>
 
@@ -155,7 +158,7 @@
                         <div class="input-row">
                             <div class="section-form">
                                 <label for="Language">Language Name *</label>
-                                <input type="text" id="Language" name="Language" placeholder="Enter Language Name"
+                                <input type="text" id="first_language_name" name="first_language_name" placeholder="Enter Language Name"
                                     required>
                             </div>
                         </div>
@@ -164,7 +167,7 @@
                         <div class="input-row">
                             <div class="section-form">
                                 <label for="Language">Language Name *</label>
-                                <input type="text" id="Language" name="Language" placeholder="Enter Language Name"
+                                <input type="text" id="second_language_name" name="second_language_name" placeholder="Enter Language Name"
                                     required>
                             </div>
                         </div>
@@ -173,7 +176,7 @@
                         <div class="input-row">
                             <div class="section-form">
                                 <label for="Language">Language Name *</label>
-                                <input type="text" id="Language" name="Language" placeholder="Enter Language Name"
+                                <input type="text" id="third_language_name" name="third_language_name" placeholder="Enter Language Name"
                                     required>
                             </div>
                         </div>
@@ -186,21 +189,21 @@
             <div class="input-grid5">
                 <div class="input-group">
                     <label class="input-label">Upload SubTitle *</label>
-                    <input type="file" class="video-input">
+                    <input type="file" class="video-input" id="first_upload_sub_title" name="first_upload_sub_title">
                     <button class="Upload-btn"> Upload Files</button>
 
                 </div>
 
                 <div class="input-group">
                     <label class="input-label">Upload SubTitle *</label>
-                    <input type="file" class="video-input">
+                    <input type="file" class="video-input" name="second_upload_sub_title" id="second_upload_sub_title">
                     <button class="Upload-btn"> Upload Files</button>
 
                 </div>
 
                 <div class="input-group">
                     <label class="input-label">Upload SubTitle *</label>
-                    <input type="file" class="video-input">
+                    <input type="file" class="video-input" name="third_upload_sub_title" id="third_upload_sub_title">
                     <button class="Upload-btn"> Upload Files</button>
 
                 </div>
@@ -211,12 +214,12 @@
             <div class="input-grid4">
                 <div class="input-group">
                     <label class="input-label">Video Duration*</label>
-                    <input type="time" class="video-input">
+                    <input type="time" class="video-input" name="video_duration" id="video_duration">
                 </div>
 
                 <div class="input-group">
                     <label class="input-label">Thumbnail Image*</label>
-                    <input type="file" class="video-input">
+                    <input type="file" class="video-input" name="thumbnail_image" id="thumbnail_image">
                     <button class="Upload-btn"> Upload Files</button>
 
                 </div>
@@ -227,7 +230,7 @@
 
                 <div class="input-group">
                     <label class="input-label">Landscape Image*</label>
-                    <input type="file" class="video-input">
+                    <input type="file" class="video-input" name="landscape_image" id="landscape_image">
                     <button class="Upload-btn"> Upload Files</button>
 
                 </div>
@@ -237,5 +240,6 @@
                 <button class="delete-btn" >Cancle</button>
             </div>
         </div>
+    </form>
     </div>
 @endsection

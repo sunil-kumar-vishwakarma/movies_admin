@@ -9,6 +9,10 @@
                 </button>
             </a>
         </div>
+        <form action="{{route('admin.tvshows.store')}}" method="post" enctype="multipart/form-data">
+        @csrf
+        
+
         <div class="tmdb-container">
             <h2 class="tmdb-heading">Import From TMDb</h2>
 
@@ -30,7 +34,7 @@
             <div class="input-tmdb">
                 <label class="input-label" for="movie-name">Movies Name</label>
                 <div class="input-wrapper">
-                    <input class="tmdb-input" type="text" id="movie-name" placeholder="Enter Movies Name">
+                    <input class="tmdb-input" type="text" id="movie-name" name="movies_name" placeholder="Enter Movies Name">
                     <button class="fetch-btn">Fetch</button>
                 </div>
             </div>
@@ -41,17 +45,17 @@
             <div class="input-grid">
                 <div class="input-group">
                     <label class="input-label">Type*</label>
-                    <select class="video-select">
+                    <select class="video-select" name="type" id="type">
                         <option>Select Type</option>
-                        <option>Comedy</option>
-                        <option>Sports</option>
-                        <option>Horror</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Horror">Horror</option>
                     </select>
                 </div>
 
                 <div class="input-group">
                     <label class="input-label">Category*</label>
-                    <select class="video-select">
+                    <select class="video-select" name="category" id="category">
                         <option value="">All Category</option>
                         <option value="Today">Thriller</option>
                         <option value="Month">Fantasy</option>
@@ -77,7 +81,7 @@
                 </div>
                 <div class="input-group">
                     <label class="input-label">Language*</label>
-                    <select class="video-select">
+                    <select class="video-select" name="language" id="language">
                         <option value="">All Language</option>
                         <option value="Language">No Language</option>
                         <option value="Language">Hindi</option>
@@ -100,17 +104,17 @@
 
                 <div class="input-group">
                     <label class="input-label">Cast*</label>
-                    <input type="text" class="video-input" placeholder="Add Cast">
+                    <input type="text" class="video-input" name="cast" id="cast" placeholder="Add Cast">
                 </div>
                 <div class="input-group">
                     <label class="input-label">Release Date*</label>
-                    <input type="date" class="video-input">
+                    <input type="date" class="video-input" name="release_date" id="release_date">
                 </div>
                 <div class="input-group">
                     <label class="input-label">Producer*</label>
-                    <select class="video-select">
+                    <select class="video-select" name="producer" id="producer">
                         <option>Select Producer</option>
-                        <option>Producer</option>
+                        <option value="Producer">Producer</option>
                     </select>
                 </div>
 
@@ -124,9 +128,9 @@
             <div class="input-grid3">
                 <div class="filter-group1">
                     <label class="input-label">Video Upload Type*</label>
-                    <select class="video-select" style="margin-top: 10px;">
-                        <option>Server Video</option>
-                        <option>YouTube</option>
+                    <select class="video-select" style="margin-top: 10px;" name="video_upload_type" id="video_upload_type">
+                        <option value="Server Video">Server Video</option>
+                        <option value="You Tube">YouTube</option>
                     </select>
                 </div>
 
@@ -134,11 +138,11 @@
                     <h4 class="filter-title">Is Premium *</h4>
                     <div class="input-row1">
                         <div class="input-item">
-                            <input type="radio" id="upload-asc" name="order-by-upload" value="asc">
+                            <input type="radio" id="is_premium" name="is_premium" value="asc">
                             <label for="upload-asc">Yes</label>
                         </div>
                         <div class="input-item">
-                            <input type="radio" id="upload-desc" name="order-by-upload" value="desc" checked>
+                            <input type="radio" id="is_premium" name="is_premium" value="desc" checked>
                             <label for="upload-desc">No</label>
                         </div>
                     </div>
@@ -147,11 +151,11 @@
                     <h4 class="filter-title">Is Title *</h4>
                     <div class="input-row1">
                         <div class="input-item">
-                            <input type="radio" id="upload-asc" name="order-by-upload" value="asc">
+                            <input type="radio" id="is_title" name="is_title" value="asc">
                             <label for="upload-asc">Yes</label>
                         </div>
                         <div class="input-item">
-                            <input type="radio" id="upload-desc" name="order-by-upload" value="desc" checked>
+                            <input type="radio" id="is_title" name="is_title" value="desc" checked>
                             <label for="upload-desc">No</label>
                         </div>
                     </div>
@@ -160,11 +164,11 @@
                     <h4 class="filter-title">Is Download *</h4>
                     <div class="input-row1">
                         <div class="input-item">
-                            <input type="radio" id="upload-asc" name="order-by-upload" value="asc">
+                            <input type="radio" id="is_download" name="is_download" value="asc">
                             <label for="upload-asc">Yes</label>
                         </div>
                         <div class="input-item">
-                            <input type="radio" id="upload-desc" name="order-by-upload" value="desc" checked>
+                            <input type="radio" id="is_download" name="is_download" value="desc" checked>
                             <label for="upload-desc">No</label>
                         </div>
                     </div>
@@ -176,28 +180,28 @@
             <div class="input-grid3">
                 <div class="input-group">
                     <label class="input-label">Upload Video (320 px)*</label>
-                    <input type="file" class="video-input">
+                    <input type="file" class="video-input" name="upload_video_320_px" id="upload_video_320_px">
                     <button class="Upload-btn"> Upload Files</button>
 
                 </div>
 
                 <div class="input-group">
                     <label class="input-label">Upload Video (480 px) </label>
-                    <input type="file" class="video-input">
+                    <input type="file" class="video-input" name="upload_video_480_px" id="upload_video_480_px">
                     <button class="Upload-btn"> Upload Files</button>
 
                 </div>
 
                 <div class="input-group">
                     <label class="input-label">Upload Video (720 px) </label>
-                    <input type="file" class="video-input">
+                    <input type="file" class="video-input" name="upload_video_720_px" id="upload_video_720_px">
                     <button class="Upload-btn"> Upload Files</button>
 
                 </div>
 
                 <div class="input-group">
                     <label class="input-label">Upload Video (1080 px) </label>
-                    <input type="file" class="video-input">
+                    <input type="file" class="video-input" name="upload_video_1080_px" id="upload_video_1080_px">
                     <button class="Upload-btn"> Upload Files</button>
 
                 </div>
@@ -208,9 +212,9 @@
             <div class="input-grid4">
                 <div class="filter-group">
                     <label class="input-label">Trailer Type*</label>
-                    <select class="video-select">
-                        <option>Server Video</option>
-                        <option>YouTube</option>
+                    <select class="video-select" name="trailer_type" id="trailer_type">
+                        <option value="Server Video">Server Video</option>
+                        <option value="You Tube">YouTube</option>
                     </select>
 
                     <p class="tmdb-note">
@@ -222,7 +226,7 @@
                 </div>
                 <div class="input-group">
                     <label class="input-label">Upload SubTitle *</label>
-                    <input type="file" class="video-input">
+                    <input type="file" class="video-input" name="upload_sub_title" id="upload_sub_title">
                     <button class="Upload-btn"> Upload Files</button>
                 </div>
             </div>
@@ -240,11 +244,11 @@
                     <h4 class="filter-title">Is Premium *</h4>
                     <div class="input-row1">
                         <div class="input-item">
-                            <input type="radio" id="upload-asc" name="order-by-upload" value="asc">
+                            <input type="radio" id="first_is_premium" name="first_is_premium" value="asc">
                             <label for="upload-asc">Yes</label>
                         </div>
                         <div class="input-item">
-                            <input type="radio" id="upload-desc" name="order-by-upload" value="desc" checked>
+                            <input type="radio" id="first_is_premium" name="first_is_premium" value="desc" checked>
                             <label for="upload-desc">No</label>
                         </div>
                     </div>
@@ -253,11 +257,11 @@
                     <h4 class="filter-title">Is Title *</h4>
                     <div class="input-row1">
                         <div class="input-item">
-                            <input type="radio" id="upload-asc" name="order-by-upload" value="asc">
+                            <input type="radio" id="first_is_title" name="first_is_title" value="asc">
                             <label for="upload-asc">Yes</label>
                         </div>
                         <div class="input-item">
-                            <input type="radio" id="upload-desc" name="order-by-upload" value="desc" checked>
+                            <input type="radio" id="first_is_title" name="first_is_title" value="desc" checked>
                             <label for="upload-desc">No</label>
                         </div>
                     </div>
@@ -266,11 +270,11 @@
                     <h4 class="filter-title">Is Download *</h4>
                     <div class="input-row1">
                         <div class="input-item">
-                            <input type="radio" id="upload-asc" name="order-by-upload" value="asc">
+                            <input type="radio" id="first_is_download" name="first_is_download" value="asc">
                             <label for="upload-asc">Yes</label>
                         </div>
                         <div class="input-item">
-                            <input type="radio" id="upload-desc" name="order-by-upload" value="desc" checked>
+                            <input type="radio" id="first_is_download" name="first_is_download" value="desc" checked>
                             <label for="upload-desc">No</label>
                         </div>
                     </div>
@@ -279,11 +283,11 @@
                     <h4 class="filter-title">Is Like *</h4>
                     <div class="input-row1">
                         <div class="input-item">
-                            <input type="radio" id="upload-asc" name="order-by-upload" value="asc">
+                            <input type="radio" id="is_like" name="is_like" value="asc">
                             <label for="upload-asc">Yes</label>
                         </div>
                         <div class="input-item">
-                            <input type="radio" id="upload-desc" name="order-by-upload" value="desc" checked>
+                            <input type="radio" id="is_like" name="is_like" value="desc" checked>
                             <label for="upload-desc">No</label>
                         </div>
                     </div>
@@ -292,7 +296,7 @@
             <div class="input-grid4">
                 <div class="input-group">
                     <label class="input-label">Thumbnail Image*</label>
-                    <input type="file" class="video-input">
+                    <input type="file" class="video-input" name="thumbnail_image" id="thumbnail_image">
                     <button class="Upload-btn"> Upload Files</button>
 
                 </div>
@@ -300,7 +304,7 @@
 
                 <div class="input-group">
                     <label class="input-label">Landscape Image*</label>
-                    <input type="file" class="video-input">
+                    <input type="file" class="video-input" name="landscape_image" id="landscape_image">
                     <button class="Upload-btn"> Upload Files</button>
 
                 </div>

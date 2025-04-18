@@ -144,7 +144,7 @@ class VideosController extends Controller
 
         $request->validate([
             'movies_name' => 'required|string',
-            'thumbnail_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,avi|max:2048',
+            'thumbnail_image' => 'nullable|image|max:2048',
         ]);
 
         $data = $request->only('movies_name',

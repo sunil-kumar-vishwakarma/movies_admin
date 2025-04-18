@@ -43,13 +43,23 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($tvShow as $rows)
                 <tr>
-                    <td>1</td>
-                    <td> <img class="icon-logo"
-                            src="https://static.vecteezy.com/system/resources/thumbnails/018/930/460/small/instagram-logo-instagram-icon-transparent-free-png.png"
-                            alt="Logo"></td>
-                    <td>Producer</td>
-                    <td>TV Show</td>
+                    <td>{{$rows->id}}</td>
+                    <td>
+
+                    @if($rows->thumbnail_image)
+                    
+                    <img src="{{ asset('/' . $rows->thumbnail_image) }}" width="60" alt="Image">
+                @else
+                <img class="icon-logo"
+                                src="https://static.vecteezy.com/system/resources/thumbnails/018/930/460/small/instagram-logo-instagram-icon-transparent-free-png.png"
+                                alt="Logo">
+                @endif
+
+                         </td>
+                    <td>{{$rows->producer}}</td>
+                    <td>{{$rows->type}}</td>
                     <td>
                         <a href="{{ route('admin.tvshows.list') }}" class="episode-btn">Episode List
                         </a>
@@ -65,6 +75,7 @@
                         <button class="delete-btn" id="open-delete-modal"><i class="fas fa-trash"></i></button>
                     </td>
                 </tr>
+                @endforeach
 
             </tbody>
         </table>

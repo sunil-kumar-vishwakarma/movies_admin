@@ -27,7 +27,7 @@ use App\Http\Controllers\VideoTypeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\SeasonController;
-use App\Http\Controllers\AvatarController;
+use App\Http\Controllers\EpisodeController;
 
 
 // Admin Login Routes
@@ -102,18 +102,23 @@ Route::middleware(['auth:admin'])->group(function () {
 
     // tv shows
     Route::get('/admin/tvshows', [TVshowsController::class, 'index'])->name('admin.tvshows.index');
-    Route::get('/admin/tvshows/list', [TVshowsController::class, 'list'])->name('admin.tvshows.list');
-    Route::get('/admin/tvshows/addepisode', [TVshowsController::class, 'addepisode'])->name('admin.tvshows.addepisode');
-    Route::get('/admin/tvshows/editepisode', [TVshowsController::class, 'editepisode'])->name('admin.tvshows.editepisode');
-    Route::get('/admin/tvshows/edit', [TVshowsController::class, 'edit'])->name('admin.tvshows.edit');
     Route::get('/admin/tvshows/addtvshows', [TVshowsController::class, 'addtvshows'])->name('admin.tvshows.add');
-
+    Route::post('/admin/tvshows/store', [TVshowsController::class, 'store'])->name('admin.tvshows.store');
+    Route::get('/admin/tvshows/edit', [TVshowsController::class, 'edit'])->name('admin.tvshows.edit');
+ 
+    Route::get('/admin/episode/list', [EpisodeController::class, 'list'])->name('admin.tvshows.list');
+    Route::get('/admin/episode/addepisode', [EpisodeController::class, 'addepisode'])->name('admin.tvshows.addepisode'); 
+    Route::post('/admin/episode/store', [EpisodeController::class, 'store'])->name('admin.episode.store');
+    Route::get('/admin/episode/editepisode', [EpisodeController::class, 'editepisode'])->name('admin.tvshows.editepisode');
+    
     // upcomming
     Route::get('/admin/upcoming', [UpcomingController::class, 'upcoming'])->name('admin.upcoming.video');
     Route::get('/admin/upcoming/add', [UpcomingController::class, 'addvideo'])->name('admin.upcoming.addupvideo');
+    Route::post('/admin/upcoming/storeUpcomingVideo', [UpcomingController::class, 'storeUpcomingVideo'])->name('admin.upcoming.storeUpcomingVideo');
     Route::get('/admin/upcoming/editvideo', [UpcomingController::class, 'editvideo'])->name('admin.upcoming.editvideo');
     Route::get('/admin/upcomingshow', [UpcomingController::class, 'upcomingshow'])->name('admin.upcoming.tvshow');
     Route::get('/admin/upcoming/addshow', [UpcomingController::class, 'addshow'])->name('admin.upcoming.addshow');
+    Route::post('/admin/upcoming/storeTvShows', [UpcomingController::class, 'storeTvShows'])->name('admin.upcoming.storeTvShows');
     Route::get('/admin/upcoming/edittvshow', [UpcomingController::class, 'edittvshow'])->name('admin.upcoming.edittvshow');
 
     // comment

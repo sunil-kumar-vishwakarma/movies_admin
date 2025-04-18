@@ -37,6 +37,7 @@
 
                     </div>
 
+                    @foreach($episodes as $rows)
                     <div class="video-card">
                         <div class="video-image">
                             <div class="video-card-overlay">
@@ -49,12 +50,20 @@
                                     <button class="delete-btn" id="open-delete-modal"><i class="fas fa-trash"></i></button>
                                 </div>
                             </div>
-                            <img src="https://i0.wp.com/highschool.latimes.com/wp-content/uploads/2018/06/share-1.jpg?fit=1200%2C630&ssl=1"
-                                alt="Thumbnail" class="video-thumbnail">
+                            @if($rows->thumbnail_image)
+                  
+                        <img src="{{ asset('/' . $rows->thumbnail_image) }}" class="video-thumbnail">
+                    @else
+                    <img src="https://i0.wp.com/highschool.latimes.com/wp-content/uploads/2018/06/share-1.jpg?fit=1200%2C630&ssl=1"
+                    alt="Thumbnail" class="video-thumbnail">
+                    @endif
+
+
+                           
                         </div>
                         <div class="video-info">
-                            <div class="video-title">Avengers: Infinity War</div>
-                            <div class="season-title">Season 1</div>
+                            <div class="video-title">Avengers: {{$rows->episode_name}}</div>
+                            <div class="season-title">{{$rows->season}}</div>
 
                         </div>
                         <!-- Like & View Buttons -->
@@ -68,6 +77,7 @@
                         </div>
                     </div>
 
+                    @endforeach
 
                     <!-- Repeat the above video-card div for each video -->
                 </div>
