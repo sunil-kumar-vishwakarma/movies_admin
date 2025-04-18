@@ -57,7 +57,7 @@
                             
                         </div>
                         <div class="video-info">
-                            <div class="video-title">Avengers: {{$rows->movies_name}}</div>
+                            <div class="video-title">Avengers: {{$rows->name}}</div>
                             <div class="video-btn">
                                 <button class="toggle-show-btn">Show</button>
                                 <button class="release-btn">Release</button>

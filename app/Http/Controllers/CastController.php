@@ -19,7 +19,7 @@ class CastController extends Controller
             'name' => 'required|string',
             'type' => 'required|string',
             'personal_info' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|max:2048',
         ]);
 
         $data = $request->only('name','type','personal_info');
@@ -47,7 +47,7 @@ class CastController extends Controller
             'name' => 'required|string',
             'type' => 'required|string',
             'personal_info' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|max:2048',
         ]);
 
         $cast = Cast::find($id);

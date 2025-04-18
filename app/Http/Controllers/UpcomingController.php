@@ -54,11 +54,11 @@ class UpcomingController extends Controller
 
 
         $request->validate([
-            'movies_name' => 'required|string',
+            'name' => 'required|string',
             'thumbnail_image' => 'nullable|image|max:2048',
         ]);
 
-        $data = $request->only('movies_name',
+        $data = $request->only('name',
         'type',
         'ads_video',
         'ads_interval_video_duration',
@@ -156,11 +156,11 @@ class UpcomingController extends Controller
 
 
         $request->validate([
-            'movies_name' => 'required|string',
+            'name' => 'required|string',
             'thumbnail_image' => 'nullable|image|max:2048',
         ]);
 
-        $data = $request->only('movies_name',
+        $data = $request->only('name',
         'type',
         'category',
         'language',

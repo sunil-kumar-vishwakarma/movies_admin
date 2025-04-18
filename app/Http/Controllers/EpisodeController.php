@@ -24,7 +24,7 @@ class EpisodeController extends Controller
     public function store(Request $request)
     {
         // $validator = Validator::make($request->all(), [
-        //     'movies_name' => 'required|string|max:255',
+        //     'sname' => 'required|string|max:255',
         //     'type' => 'required|string|max:100',
         //     'category' => 'required|string|max:100',
         //     'language' => 'required|string|max:100',
@@ -56,11 +56,11 @@ class EpisodeController extends Controller
 
 
         $request->validate([
-            'episode_name' => 'required|string',
+            'name' => 'required|string',
             'thumbnail_image' => 'nullable|image|max:2048',
         ]);
 
-        $data = $request->only('episode_name',
+        $data = $request->only('name',
         'season',
         'video_upload_type',
         'is_premium',

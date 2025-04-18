@@ -9,7 +9,7 @@ class UpcommingTvShow extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'movies_name',
+        'name',
         'type',
         'category',
         'language',

@@ -9,7 +9,7 @@ class UpcommingVideo extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'movies_name',
+        'name',
         'type',
         'ads_video',
         'ads_interval_video_duration',

@@ -19,7 +19,7 @@
                     <div class="input-row">
                         <div class="section-form">
                             <label for="episode_name">Name *</label>
-                            <input type="text" id="episode_name" name="episode_name" placeholder="Enter Episode Name" required>
+                            <input type="text" id="episode_name" name="name" placeholder="Enter Episode Name" required>
                         </div>
                     </div>
                 </div>

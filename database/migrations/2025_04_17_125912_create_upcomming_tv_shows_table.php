@@ -15,7 +15,7 @@ class CreateUpcommingTvShowsTable extends Migration
     {
         Schema::create('upcomming_tv_shows', function (Blueprint $table) {
             $table->id();
-            $table->string('movies_name');
+            $table->string('name');
             $table->string('type');
             $table->string('category');
             $table->string('language');

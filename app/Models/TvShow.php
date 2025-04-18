@@ -10,7 +10,7 @@ class TvShow extends Model
     use HasFactory;
 
     protected $fillable = [
-        'movies_name',
+        'name',
         'type',
         'category',
         'language',

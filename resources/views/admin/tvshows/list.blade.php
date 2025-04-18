@@ -62,7 +62,7 @@
                            
                         </div>
                         <div class="video-info">
-                            <div class="video-title">Avengers: {{$rows->episode_name}}</div>
+                            <div class="video-title">Avengers: {{$rows->name}}</div>
                             <div class="season-title">{{$rows->season}}</div>
 
                         </div>

@@ -15,7 +15,7 @@ class CreateVideosTable extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
-            $table->string('movies_name');
+            $table->string('name');
             $table->string('type');
             $table->string('ads_video');
             $table->string('ads_interval_video_duration');

@@ -21,7 +21,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|max:2048',
         ]);
 
         $data = $request->only('name');

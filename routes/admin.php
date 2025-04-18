@@ -28,6 +28,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\SeasonController;
 use App\Http\Controllers\EpisodeController;
+use App\Http\Controllers\AvatarController;
 
 
 // Admin Login Routes

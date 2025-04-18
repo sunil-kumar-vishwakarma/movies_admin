@@ -10,7 +10,7 @@ class Episode extends Model
     use HasFactory;
 
     protected $fillable = [
-        'episode_name',
+        'name',
         'season',
         'video_upload_type',
         'is_premium',

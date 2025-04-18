@@ -17,6 +17,7 @@ class VideosController extends Controller
     }
     public function addvideos()
     {
+        
         return view('admin.videos.addvideo');
     }
     // public function edit()
@@ -143,11 +144,11 @@ class VideosController extends Controller
 
 
         $request->validate([
-            'movies_name' => 'required|string',
+            'name' => 'required|string',
             'thumbnail_image' => 'nullable|image|max:2048',
         ]);
 
-        $data = $request->only('movies_name',
+        $data = $request->only('name',
         'type',
         'ads_video',
         'ads_interval_video_duration',
@@ -208,7 +209,7 @@ class VideosController extends Controller
     public function update(Request $request, Video $video)
     {
         $validator = Validator::make($request->all(), [
-            'movies_name' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'type' => 'required|string|max:100',
             'category' => 'required|string|max:100',
             'language' => 'required|string|max:100',

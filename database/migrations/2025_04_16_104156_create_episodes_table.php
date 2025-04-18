@@ -15,7 +15,7 @@ class CreateEpisodesTable extends Migration
     {
         Schema::create('episodes', function (Blueprint $table) {
             $table->id();
-            $table->string('episode_name');
+            $table->string('name');
             $table->string('season');
             $table->string('video_upload_type');
             $table->string('is_premium');
