@@ -20,7 +20,7 @@ Route::post('/user/loginOrRegisterWithOtp', [ApiUserController::class, 'loginOrR
 Route::post('/user/resend-otp', [ApiUserController::class, 'resendOtp']);
 
 Route::post('/user/verify_otp', [ApiUserController::class, 'verifyOtp']);
-Route::get('/home_api', [ApiHomeController::class, 'home']);
+Route::get('/home_page_api', [ApiHomeController::class, 'home']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
