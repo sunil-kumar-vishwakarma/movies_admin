@@ -1223,7 +1223,6 @@
                     </div>
 
                 </div>
-
                 
                 {{-- 6th section --}}
                 <div id="Sports" class="section-tabcontent">
