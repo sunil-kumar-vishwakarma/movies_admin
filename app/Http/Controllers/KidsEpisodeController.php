@@ -1,29 +1,28 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\KidsEpisode;
 use Illuminate\Http\Request;
-use App\Models\LiveVideo;
 
-class LiveController extends Controller
+class KidsEpisodeController extends Controller
 {
-    public function live()
+    //
+    public function list()
     {
-        return view('admin.live.index');
+        $episodes= KidsEpisode::all();
+        return view('admin.kids.list', compact('episodes'));
     }
-    public function edit()
+
+    public function addepisode()
     {
-        return view('admin.live.edit');
+        return view('admin.kids.addepisode');
     }
-    public function addvideo()
-    {
-        return view('admin.live.addvideo');
-    }
+
 
     public function store(Request $request)
     {
         // $validator = Validator::make($request->all(), [
-        //     'movies_name' => 'required|string|max:255',
+        //     'sname' => 'required|string|max:255',
         //     'type' => 'required|string|max:100',
         //     'category' => 'required|string|max:100',
         //     'language' => 'required|string|max:100',
@@ -60,25 +59,16 @@ class LiveController extends Controller
         ]);
 
         $data = $request->only('name',
-        'type',
-        'ads_video',
-        'ads_interval_video_duration',
-        'category',
-        'language',
-        'cast',
-        'video_duration',
-        'release_date',
-        'producer',
+        'season',
         'video_upload_type',
         'is_premium',
         'is_title',
         'is_download',
+        'is_like',
         'upload_video_320_px',
         'upload_video_480_px',
         'upload_video_720_px',
         'upload_video_1080_px',
-        'trailer_type',
-        'upload_sub_title',
         'sub_title_type',
         'first_language_name',
         'second_language_name',
@@ -86,23 +76,27 @@ class LiveController extends Controller
         'first_upload_sub_title',
         'second_upload_sub_title',
         'third_upload_sub_title',
-        'second_video_upload_type',
-        'is_rent',
-        'is_comment',
-        'is_like',
-        'landscape_image');
+        'video_duration',
+        'description',
+        'landscape_image',
+        'kids_id');
 
         if ($request->hasFile('thumbnail_image')) {
             $image = $request->file('thumbnail_image');
             $filename = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('uploads/livevideo'), $filename);
-            $data['thumbnail_image'] = 'uploads/livevideo/' . $filename;
+            $image->move(public_path('uploads/episode'), $filename);
+            $data['thumbnail_image'] = 'uploads/episode/' . $filename;
         }
 
-        $video =  LiveVideo::create($data);
+        $video =  KidsEpisode::create($data);
 
 
-        return redirect()->route('admin.live.index')->with('success', 'Live Video created successfully.');
+        return redirect()->route('admin.kids.list')->with('success', 'Episode created successfully.');
     }
 
+    public function editepisode()
+    {
+        return view('admin.tvshows.editepisode');
+    }
 }
+

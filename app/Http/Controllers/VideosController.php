@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Video;
+use App\Models\VideoType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -18,7 +19,7 @@ class VideosController extends Controller
     public function addvideos()
     {
         $types = VideoType::all();
-        return view('admin.videos.addvideo',compact());
+        return view('admin.videos.addvideo',compact('types'));
     }
     // public function edit()
     // {

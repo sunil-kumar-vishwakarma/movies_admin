@@ -60,8 +60,8 @@ class TVshowsController extends Controller
 
 
         $request->validate([
-            'movies_name' => 'required|string',
-            'thumbnail_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,avi|max:2048',
+            'name' => 'required|string',
+            'thumbnail_image' => 'nullable|image',
         ]);
 
         $data = $request->only('name',

@@ -5,7 +5,7 @@
         <div class="add-button mb-3">
             <a href="{{ route('admin.kids.index') }}">
                 <button class="back-btn" id="open-add-modal">
-                    <i class="fas fa-arrow-left"></i> TV SHOWS
+                    <i class="fas fa-arrow-left"></i> Kids
                 </button>
             </a>
         </div>
@@ -38,23 +38,36 @@
                     </div>
 
                     <!-- Static Video Cards (Example Data) -->
+                    @foreach($episodes as $rows)
                     <div class="video-card">
                         <div class="video-image">
                             <div class="video-card-overlay">
                                 <button class="play-btn"><i class="fas fa-play"></i></button>
                                 <div class="video-card-icons">
-                                    <a href="{{ route('admin.kids.editepisode') }}">
+                                    {{-- <button class="chart-btn"><i class="fas fa-chart-line"></i></button> --}}
+                                    <a href="{{ route('admin.tvshows.editepisode') }}">
                                         <button class="edit-btn"><i class="fas fa-edit"></i></button>
                                     </a>
                                     <button class="delete-btn" id="open-delete-modal"><i class="fas fa-trash"></i></button>
                                 </div>
                             </div>
-                            <img src="https://i0.wp.com/highschool.latimes.com/wp-content/uploads/2018/06/share-1.jpg?fit=1200%2C630&ssl=1" alt="Thumbnail" class="video-thumbnail">
+                            @if($rows->thumbnail_image)
+                  
+                        <img src="{{ asset('/' . $rows->thumbnail_image) }}" class="video-thumbnail">
+                    @else
+                    <img src="https://i0.wp.com/highschool.latimes.com/wp-content/uploads/2018/06/share-1.jpg?fit=1200%2C630&ssl=1"
+                    alt="Thumbnail" class="video-thumbnail">
+                    @endif
+
+
+                           
                         </div>
                         <div class="video-info">
-                            <div class="video-title">Avengers: Endgame</div>
-                            <div class="season-title">Season 1</div>
+                            <div class="video-title">Avengers: {{$rows->name}}</div>
+                            <div class="season-title">{{$rows->season}}</div>
+
                         </div>
+                        <!-- Like & View Buttons -->
                         <div class="btn-container">
                             <button class="icon-btn like-btn">
                                 <i class="fas fa-thumbs-up"></i> <span class="count">10</span>
@@ -65,7 +78,9 @@
                         </div>
                     </div>
 
-                    <div class="video-card">
+                    @endforeach
+
+                    <!-- <div class="video-card">
                         <div class="video-image">
                             <div class="video-card-overlay">
                                 <button class="play-btn"><i class="fas fa-play"></i></button>
@@ -90,7 +105,7 @@
                                 <i class="fas fa-eye"></i> <span class="count">150</span>
                             </button>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- Repeat more video cards as needed -->
 

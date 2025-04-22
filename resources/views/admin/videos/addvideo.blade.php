@@ -34,7 +34,7 @@
             <div class="input-tmdb">
                 <label class="input-label" for="movie-name">Movies Name</label>
                 <div class="input-wrapper">
-                    <input class="tmdb-input" type="text" id="movie-name" name="movies_name" placeholder="Enter Movies Name">
+                    <input class="tmdb-input" type="text" id="name" name="name" placeholder="Enter Movies Name">
                     <button class="fetch-btn">Fetch</button>
                 </div>
             </div>

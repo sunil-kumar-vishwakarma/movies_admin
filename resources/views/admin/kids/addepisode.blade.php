@@ -10,10 +10,10 @@
             </a>
         </div>
         <div class="video-details-container">
-        <form action="{{route('admin.episode.store')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('admin.kids.episodestore')}}" method="post" enctype="multipart/form-data">
         @csrf
-
-        <input type="hidden" id="tv_show_id" name="tv_show_id" placeholder="Enter Episode Name" value="1" required>
+        
+        <input type="hidden" id="kids_id" name="kids_id" placeholder="Enter Episode Name" value="1" required>
             <div class="input-grid4">
                 <div class="filter-group">
                     <div class="input-row">

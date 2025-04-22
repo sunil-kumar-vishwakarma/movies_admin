@@ -3,14 +3,14 @@
 @section('content')
     <div class="container">
         <div class="add-button mb-3">
-            <a href="{{ route('admin.videos.videos') }}">
+            <a href="{{ route('admin.live.index') }}">
                 <button class="back-btn" id="open-add-modal">
-                    <i class="fas fa-arrow-left"></i> VIDEOS LIST
+                    <i class="fas fa-arrow-left"></i>LIVE VIDEOS LIST
                 </button>
             </a>
         </div>
         
-        <form action="{{route('admin.videos.store')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('admin.live.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         
         <div class="tmdb-container">
@@ -34,7 +34,7 @@
             <div class="input-tmdb">
                 <label class="input-label" for="movie-name">Movies Name</label>
                 <div class="input-wrapper">
-                    <input class="tmdb-input" type="text" id="movie-name" name="movies_name" placeholder="Enter Movies Name">
+                    <input class="tmdb-input" type="text" id="name" name="name" placeholder="Enter Movies Name">
                     <button class="fetch-btn">Fetch</button>
                 </div>
             </div>

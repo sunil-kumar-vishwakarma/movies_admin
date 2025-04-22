@@ -43,49 +43,41 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>
-                    <img src="https://via.placeholder.com/60x80.png?text=TV+Show" width="60" alt="Image">
-                </td>
-                <td>Stranger Things</td>
-                <td>Series</td>
-                <td>
-                    <a href="{{ route('admin.kids.list') }}" class="episode-btn">Episode List
-                    </a>
-                </td>
-                <td>
-                    <button class="status-btn status-show">Show</button>
-                </td>
-                <td>
-                    <a href="{{ route('admin.kids.edit') }}">
-                        <button class="edit-btn"><i class="fas fa-edit"></i></button>
-                    </a>
-                    <button class="delete-btn" id="open-delete-modal"><i class="fas fa-trash"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>
-                    <img src="https://via.placeholder.com/60x80.png?text=TV+Show" width="60" alt="Image">
-                </td>
-                <td>Breaking Bad</td>
-                <td>Drama</td>
-                <td>
-                    <a href="#" class="episode-btn">Episode List</a>
-                </td>
-                <td>
-                    <button class="status-btn status-show">Show</button>
-                </td>
-                <td>
-                    <a href="#">
-                        <button class="edit-btn"><i class="fas fa-edit"></i></button>
-                    </a>
-                    <button class="delete-btn" id="open-delete-modal"><i class="fas fa-trash"></i></button>
-                </td>
-            </tr>
-            <!-- Add more static rows as needed -->
-        </tbody>
+                @foreach($kids as $rows)
+                <tr>
+                    <td>{{$rows->id}}</td>
+                    <td>
+
+                    @if($rows->thumbnail_image)
+                    
+                    <img src="{{ asset('/' . $rows->thumbnail_image) }}" width="60" alt="Image">
+                @else
+                <img class="icon-logo"
+                                src="https://static.vecteezy.com/system/resources/thumbnails/018/930/460/small/instagram-logo-instagram-icon-transparent-free-png.png"
+                                alt="Logo">
+                @endif
+
+                         </td>
+                    <td>{{$rows->producer}}</td>
+                    <td>{{$rows->type}}</td>
+                    <td>
+                        <a href="{{ route('admin.kids.list') }}" class="episode-btn">Episode List
+                        </a>
+                    </td>
+                    <td>
+                        <button class="status-btn status-show">Show</button>
+                    </td>
+                    <td>
+                        <a href="{{ route('admin.kids.edit') }}">
+                            <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                        </a>
+
+                        <button class="delete-btn" id="open-delete-modal"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+                @endforeach
+
+            </tbody>
     </table>
 
     <div class="pagination">

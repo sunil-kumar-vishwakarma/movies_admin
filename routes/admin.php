@@ -31,6 +31,7 @@ use App\Http\Controllers\EpisodeController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\LiveController;
 use App\Http\Controllers\KidsController;
+use App\Http\Controllers\KidsEpisodeController;
 
 
 // Admin Login Routes
@@ -91,17 +92,27 @@ Route::middleware(['auth:admin'])->group(function () {
 
     // section
     Route::get('/admin/index', [SectionController::class, 'index'])->name('admin.section.index');
+    Route::post('/admin/index/store', [SectionController::class, 'store'])->name('admin.section.index.store');
+    Route::post('/admin/index/store_comedy', [SectionController::class, 'storeComedy'])->name('admin.section.index.store_comedy');
+    Route::post('/admin/index/store_horror', [SectionController::class, 'storeHorror'])->name('admin.section.index.store_horror');
+    Route::post('/admin/index/store_tv_show', [SectionController::class, 'storeTvShow'])->name('admin.section.index.store_tv_show');
+    Route::post('/admin/index/store_tv_channel', [SectionController::class, 'storeTvChannel'])->name('admin.section.index.store_tv_channel');
+    Route::post('/admin/index/store_sports', [SectionController::class, 'storeSports'])->name('admin.section.index.store_sports');
+    Route::post('/admin/index/store_upcoming', [SectionController::class, 'storeUpcoming'])->name('admin.section.index.store_upcoming');
 
     Route::get('/admin/live', [LiveController::class, 'live'])->name('admin.live.index');
     Route::get('/admin/live/edit', [LiveController::class, 'edit'])->name('admin.live.edit');
+    Route::post('/admin/live/store', [LiveController::class, 'store'])->name('admin.live.store');
     Route::get('/admin/live/addvideo', [LiveController::class, 'addvideo'])->name('admin.live.addvideo');
 
     Route::get('/admin/kids/add', [KidsController::class, 'add'])->name('admin.kids.add');
-    Route::get('/admin/kids/addepisode', [KidsController::class, 'addepisode'])->name('admin.kids.addepisode');
+    Route::post('/admin/kids/store', [KidsController::class, 'store'])->name('admin.kids.store');
     Route::get('/admin/kids/edit', [KidsController::class, 'edit'])->name('admin.kids.edit');
     Route::get('/admin/kids', [KidsController::class, 'kids'])->name('admin.kids.index');
-    Route::get('/admin/kids/list', [KidsController::class, 'list'])->name('admin.kids.list');
-    Route::get('/admin/kids/editepisode', [KidsController::class, 'editepisode'])->name('admin.kids.editepisode');
+    Route::get('/admin/kids/list', [KidsEpisodeController::class, 'list'])->name('admin.kids.list');
+    Route::get('/admin/kids/addepisode', [KidsEpisodeController::class, 'addepisode'])->name('admin.kids.addepisode');
+    Route::post('/admin/kids/episodestore', [KidsEpisodeController::class, 'store'])->name('admin.kids.episodestore');
+    Route::get('/admin/kids/editepisode', [KidsEpisodeController::class, 'editepisode'])->name('admin.kids.editepisode');
 
     // videos
     Route::get('/admin/watchtime', [VideosController::class, 'watchtime'])->name('admin.watchtime');

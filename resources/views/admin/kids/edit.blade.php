@@ -5,7 +5,7 @@
         <div class="add-button mb-3">
             <a href="{{ route('admin.kids.index') }}">
                 <button class="back-btn" id="open-add-modal">
-                    <i class="fas fa-arrow-left"></i> TV SHOWS
+                    <i class="fas fa-arrow-left"></i> Kids
                 </button>
             </a>
         </div>
