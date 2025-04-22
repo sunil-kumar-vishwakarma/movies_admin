@@ -151,6 +151,8 @@ Route::middleware(['auth:admin'])->group(function () {
 
     // notification
     Route::get('/admin/notification', [NotificationController::class, 'index'])->name('admin.notification');
+    Route::post('/admin/notification/add', [NotificationController::class, 'store'])->name('admin.notification.store');
+    Route::delete('/admin/notification/delete/{id}', [NotificationController::class, 'destroy'])->name('admin.notification.delete');
 
     // coupon
     Route::get('/admin/coupon', [CouponController::class, 'index'])->name('admin.coupon');
@@ -171,6 +173,7 @@ Route::middleware(['auth:admin'])->group(function () {
 
     Route::get('/admin/bannermodel', [BannerModelController::class, 'bannermodel'])->name('admin.bannermodel');
     Route::post('/admin/bannermodel/store', [BannerModelController::class, 'store'])->name('admin.bannermodel.store');
+    Route::post('/admin/bannermodel/update/{id}', [BannerModelController::class, 'update'])->name('admin.bannermodel.update');
 
     Route::get('/admin/adsvideo', [BannerModelController::class, 'adsvideo'])->name('admin.adsvideo');
 

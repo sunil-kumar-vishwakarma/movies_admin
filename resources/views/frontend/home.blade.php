@@ -4,9 +4,10 @@
   <main>
       <section class="hero">
         <div class="carousel">
-          <div
-            class="slide active"
-            style="background-image: url('image/bhuj.jpeg')">
+          @foreach($homeBanner as $row)
+        
+          <div>
+            <img src="{{ asset('/' . $row->image) }}" class="slide" alt="Image">
             <div class="hero-content">
               <h1>Bhuj: The Pride of India</h1>
               <p>
@@ -17,7 +18,9 @@
               <button class="watch-btn">▶ Watch Now</button>
             </div>
           </div>
-          <div
+          @endforeach
+
+          <!-- <div
             class="slide"
             style="background-image: url('image/mayanagri.jpg')">
             <div class="hero-content">
@@ -68,9 +71,10 @@
               </p>
               <button class="watch-btn">▶ Watch Now</button>
             </div>
-          </div>
+          </div> -->
         </div>
       </section>
+
       <br />
 
   <div class="box">
@@ -253,18 +257,23 @@
 
         <div class="show-movies">
           <div class="movie-slider" id="kid">
+            @foreach($kids as $rows)
             <div class="movie-item">
-              <a href="watch.html"><img src="image/tom&jerry.jpg" alt="tom&jerry" /></a>
+              <a href="watch.html">
+              <img src="{{ asset('/' . $rows->thumbnail_image) }}" alt="Image">
+                <!-- <img src="image/tom&jerry.jpg" alt="tom&jerry" /> -->
+              </a>
               <div class="movie-title">Kapil Sharma Show</div>
             </div>
-            <div class="movie-item">
+            @endforeach
+            <!-- <div class="movie-item">
               <a href="watch.html"><img src="image/mayanagri.jpg" alt="mayanagri" /></a>
               <div class="movie-title">Kapil Sharma Show</div>
             </div>
             <div class="movie-item">
               <a href="watch.html"><img src="image/doremon.jpeg" alt="doremon" /></a>
               <div class="movie-title">Kapil Sharma Show</div>
-            </div>
+            </div> -->
           </div>
         </div>
       </section>
@@ -274,27 +283,38 @@
         <h2>TVShows</h2>
         
         <div class="movies" id="shows" >
-          <div class="movie" data-video="https://www.youtube.com/embed/PGPVZT3Blvs?si=ji6VcxGW5RR04iZQ">
+          <!-- <div class="movie" data-video="https://www.youtube.com/embed/PGPVZT3Blvs?si=ji6VcxGW5RR04iZQ">
             <a href="watch.html"><img src="image/baalveer.webp" alt="URI Movie" /></a>
             <div class="overlay" id="setoverlay">
               <div class="play-container">
                 <a href="watch.html"><div class="play-button">▶</div></a>
                 <div class="popup">
                   <div>Movie Title: URI</div>
-                  <iframe id="myVideo" width="560" height="315"
-    src="https://www.youtube.com/embed/PGPVZT3Blvs?autoplay=1&mute=1&enablejsapi=1"
-    title="YouTube video player"
-    frameborder="0"
-    allow="autoplay; encrypted-media"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-</iframe>
+                  <iframe id="myVideo" width="560" height="315" src="https://www.youtube.com/embed/PGPVZT3Blvs?autoplay=1&mute=1&enablejsapi=1" title="YouTube video player" frameborder="0" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          @foreach($tvShow as $rows)
+          <div class="movie" data-video="https://www.youtube.com/embed/PGPVZT3Blvs?si=ji6VcxGW5RR04iZQ">
+            <a href="watch.html">
+              <!-- <img src="image/akbar.webp" alt="Bhuj" /> -->
+              <img src="{{ asset('/' . $rows->thumbnail_image) }}" alt="Image">
+            </a>
+            <div class="overlay" id="setoverlay">
+              <div class="play-container">
+                <a href="watch.html"><div class="play-button">▶</div></a>
+                <div class="popup">
+                  <div>{{$rows->name}}</div>
+                  <img src="{{ asset('/' . $rows->thumbnail_image) }}" alt="Image">
+                  <!-- <img src="image/akbar.webp" alt="Popup Movie Poster" /> -->
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="movie" data-video="https://www.youtube.com/embed/PGPVZT3Blvs?si=ji6VcxGW5RR04iZQ">
+          @endforeach
+          <!-- <div class="movie" data-video="https://www.youtube.com/embed/PGPVZT3Blvs?si=ji6VcxGW5RR04iZQ">
             <a href="watch.html"><img src="image/akbar.webp" alt="Bhuj" /></a>
             <div class="overlay" id="setoverlay">
               <div class="play-container">
@@ -305,9 +325,9 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
-          <div class="movie" data-video="https://www.youtube.com/embed/PGPVZT3Blvs?si=ji6VcxGW5RR04iZQ">
+          <!-- <div class="movie" data-video="https://www.youtube.com/embed/PGPVZT3Blvs?si=ji6VcxGW5RR04iZQ">
             <a href="watch.html"><img src="image/shakalaka.png" alt="Daag" /></a>
             <div class="overlay" id="setoverlay">
               <div class="play-container">
@@ -325,11 +345,11 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
         
 
-          <div class="movie" data-video="https://www.youtube.com/embed/PGPVZT3Blvs?si=ji6VcxGW5RR04iZQ">
+          <!-- <div class="movie" data-video="https://www.youtube.com/embed/PGPVZT3Blvs?si=ji6VcxGW5RR04iZQ">
             <a href="watch.html"><img src="image/tarakmehta.webp" alt="Bhaag Milkha Bhaag" /></a>
             <div class="overlay" id="setoverlay">
               <div class="play-container">
@@ -387,7 +407,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </section><br>
 
@@ -397,14 +417,18 @@
           <a href="moviesall.html" class="view-all">View All</a>
         </div>
         <div class="movies">
-          <div class="movie-item">
-            <a href="watch.html"><img src="image/ligermov.jpg" alt="URI Movie" /></a>
-          <div class="movie-title">Kapil Sharma Show</div></div>
 
+        @foreach($video as $rows)
           <div class="movie-item">
+            <a href="watch.html">
+            <img src="{{ asset('/' . $rows->thumbnail_image) }}" alt="Image">
+              <!-- <img src="image/ligermov.jpg" alt="URI Movie" /></a> -->
+          <div class="movie-title">{{$rows->name}}</div></div>
+        @endforeach
+          <!-- <div class="movie-item">
             <a href="watch.html"><img src="image/rrr1.jpg" alt="Bhuj" /></a>
-          <div class="movie-title">Kapil Sharma Show</div></div>
-
+          <div class="movie-title">Kapil Sharma Show</div></div> -->
+<!-- 
           <div class="movie-item">
             <a href="watch.html"><img src="image/83ranveer.jpg" alt="Daag" /></a>
           <div class="movie-title">Kapil Sharma Show</div></div>
@@ -423,7 +447,7 @@
 
           <div class="movie-item">
             <a href="watch.html"><img src="image/raamsetu.jpg" alt="Naadi Dosh" /></a>
-          <div class="movie-title">Kapil Sharma Show</div></div>
+          <div class="movie-title">Kapil Sharma Show</div></div> -->
 
         
         </div>

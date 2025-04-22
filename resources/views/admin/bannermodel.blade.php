@@ -254,7 +254,7 @@ $('#edit-form').submit(function (e) {
     });
 
     $.ajax({
-        url: '/admin/cast/update/' + id,
+        url: '/admin/bannermodel/update/' + id,
         type: 'POST',
         data: formData,
         contentType: false,

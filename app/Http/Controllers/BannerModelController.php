@@ -51,7 +51,7 @@ class BannerModelController extends Controller
     {
         $request->validate([
             'type' => 'required|string',
-            'image' => 'required|image',
+            // 'image' => 'required|image',
             'upload_link' => 'required',
         ]);
 

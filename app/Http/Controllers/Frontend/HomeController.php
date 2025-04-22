@@ -4,13 +4,27 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\BannerModel;
+use App\Models\Kids;
+use App\Models\TvShow;
+use App\Models\Video;
 
 class HomeController extends Controller
 {
     
     public function home(){
+       $kids = Kids::get();
+       $tvShow = TvShow::get();
+    //    $video = Video::where('type', 'Movies')->get();
+       $video = Video::get();
+    //    $kids = Kids::get();
+    //    $kids = Kids::get();
+    //    $kids = Kids::get();
+    //    $kids = Kids::get();
 
-        return view('frontend.home');
+      $homeBanner =  BannerModel::where('type','Home')->orderBy('id','desc')->get();
+
+        return view('frontend.home', compact('homeBanner','kids','tvShow','video'));
     }
 
     public function movies(){
