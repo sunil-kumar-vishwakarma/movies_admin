@@ -9,6 +9,7 @@ use App\Models\UpcommingVideo;
 use App\Models\Video;
 use App\Models\Episode;
 use App\Models\TvShow;
+use App\Models\BannerModel;
 
 class ApiHomeController extends Controller
 {
@@ -47,6 +48,10 @@ class ApiHomeController extends Controller
             "icon" => "assets/images/icon-video.png",
             "categories" => [
                 [
+                    "name" => "Slider",
+                    "banner" => BannerModel::where('type','Home')->orderBy('id','desc')->get()
+                ],
+                [
                     "name" => "Hollywood",
                     "videos" => Video::get()
                 ],
@@ -58,12 +63,20 @@ class ApiHomeController extends Controller
                 //     "name" => "Tollywood",
                 //     "videos" => Video::where('category', 'Tollywood')->get()
                 // ],
+
+                
+                
+
             ]
         ],
         [
             "name" => "Movies",
             "icon" => "assets/images/icon-video.png",
             "categories" => [
+                [
+                    "name" => "Slider",
+                    "banner" => BannerModel::where('type','Movies')->orderBy('id','desc')->get()
+                ],
                 // [
                 //     "name" => "Trending",
                 //     "videos" => Video::where('tag', 'trending')->get()
@@ -76,6 +89,8 @@ class ApiHomeController extends Controller
                 //     "name" => "Classics",
                 //     "videos" => Video::where('tag', 'classic')->get()
                 // ],
+               
+                
             ]
         ],
         
@@ -83,6 +98,11 @@ class ApiHomeController extends Controller
             "name" => "Live TV",
             "icon" => "assets/images/RRR.jpg",
             "categories" => [
+                [
+                    "name" => "Slider",
+                    "banner" => BannerModel::where('type','Live TV')->orderBy('id','desc')->get()
+                ],
+                
                 [
                     "name" => "Sports",
                     "videos" => TvShow::get()
@@ -124,12 +144,47 @@ class ApiHomeController extends Controller
         //         ],
         //     ]
         // ]
+
+        [
+            "name" => "Upcoming",
+            "icon" => "assets/images/icon-video.png",
+            "categories" => [
+                [
+                    "name" => "Slider",
+                    "banner" => BannerModel::where('type','Upcoming')->orderBy('id','desc')->get()
+                ],
+                // [
+                //     "name" => "Trending",
+                //     "videos" => Video::where('tag', 'trending')->get()
+                // ],
+                [
+                    "name" => "Upcoming",
+                    "videos" => UpcommingVideo::get()
+                ],
+                // [
+                //     "name" => "Classics",
+                //     "videos" => Video::where('tag', 'classic')->get()
+                // ],
+               
+                
+            ]
+        ],
     ];
 
     return response()->json([
         'status' => true,
         'message' => 'Home Video List successfully',
         'pages' => $pages
+    ]);
+}
+
+public function homeSlider(){
+    $homeBanner =  BannerModel::where('type','Home')->orderBy('id','desc')->get();
+
+    return response()->json([
+        'status' => true,
+        'message' => 'Home Video List successfully',
+        'pages' => $homeBanner
     ]);
 }
 

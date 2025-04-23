@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BannerModel;
+use App\Models\Category;
+use App\Models\VideoType;
 
 class BannerModelController extends Controller
 {
     public function bannermodel()
     {
+        $categories = Category::all();
+        $type = VideoType::all();
        $bannerModel=  BannerModel::all();
-        return view('admin.bannermodel', compact('bannerModel'));
+        return view('admin.bannermodel', compact('bannerModel','categories','type'));
     }
     public function adsvideo()
     {
@@ -54,7 +58,7 @@ class BannerModelController extends Controller
             // 'image' => 'required|image',
             'upload_link' => 'required',
         ]);
-
+        // print_r($request->all());die;
         $banner = BannerModel::find($id);
         $data = $request->only('type','upload_link');
 

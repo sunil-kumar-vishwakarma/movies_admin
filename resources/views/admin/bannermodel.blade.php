@@ -116,11 +116,14 @@
                     <label class="input-label">Type</label>
                     <select class="video-select" name="type" id="type">
                         <option>Select Type</option>
-                        <option value="Home">Home</option>
-                        <option value="About us">About us</option>
+                        @foreach($categories as $rows)
+                        <option value="{{$rows->name}}">{{$rows->name}}</option>
+
+                        @endforeach
+                        <!-- <option value="About us">About us</option>
                         <option value="Services">Services</option>
                         <option value="Portfolio">Portfolio</option>
-                        <option value="Contact">Contact</option>
+                        <option value="Contact">Contact</option> -->
                     </select>
                 </div>
                 <div class="form-group">
@@ -142,18 +145,20 @@
                 <div class="form-group">
                     <label for="image">Image</label>
                     <input type="file" id="image" name="image" required>
-                    <input type="hidden" id="edit-id" name="id" placeholder="Enter Name" required>
-                    <img id="edit-preview" src=" " style="max-width:100px; margin-top:10px;">
+                    <input type="hidden" id="edit-id" name="id" placeholder="Enter Name" required>                    <img id="edit-preview" src=" " style="max-width:100px; margin-top:10px;">
                 </div>
                 <div class="form-group">
                     <label class="input-label">Type</label>
                     <select class="video-select" name="type" id="type">
                         <option>Select Type</option>
-                        <option value="Home">Home</option>
-                        <option value="About us">About us</option>
+                        @foreach($categories as $rows)
+                        <option value="{{$rows->name}}">{{$rows->name}}</option>
+
+                        @endforeach
+                        <!-- <option value="About us">About us</option>
                         <option value="Services">Services</option>
                         <option value="Portfolio">Portfolio</option>
-                        <option value="Contact">Contact</option>
+                        <option value="Contact">Contact</option> -->
                     </select>
                 </div>
                 <div class="form-group">
