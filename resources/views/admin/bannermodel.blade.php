@@ -269,69 +269,40 @@ $(document).ready(function () {
 
     
     // Submit Edit Form
-// $('#edit-form').submit(function (e) {
-//     e.preventDefault();
-    
-//     let formData = new FormData(this);
-//     let id = $('#edit-id').val();
-// // console.log(formData);
-//     $.ajaxSetup({
-//         headers: {
-//             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//         }
-//     });
-
-//     $.ajax({
-//         url: "{{ route('admin.bannermodel.update') , id }}",
-//         type: 'POST',
-//         data: formData,
-//         contentType: false,
-//         processData: false,
-//         success: function (res) {
-//             // $('#editModal').modal('hide');
-//             // location.reload();
-//             $('#edit-form')[0].reset();
-//             location.reload();
-//             // Close modal
-//             $('#editModal').closeModal();
-
-//         },
-//         error: function (err) {
-//             console.error(err);
-//             alert('Update failed');
-//         }
-//     });
-// });
-
 $('#edit-form').submit(function (e) {
-        e.preventDefault();
-
-        let formData = new FormData(this);
-        let id = $('#edit-id').val();
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $.ajax({
-            url: `/admin/bannermodel/update/${id}`, // OR use a hidden input with full route if dynamic
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function (res) {
-                $('#edit-form')[0].reset();
-                $('#editModal').modal('hide'); // If using Bootstrap
-                location.reload();
-            },
-            error: function (err) {
-                console.error(err);
-                alert('Update failed');
-            }
-        });
+    e.preventDefault();
+    
+    let formData = new FormData(this);
+    let id = $('#edit-id').val();
+// console.log(formData);
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
     });
+
+    $.ajax({
+        url: '/admin/bannermodel/update/' + id,
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (res) {
+            // $('#editModal').modal('hide');
+            // location.reload();
+            $('#edit-form')[0].reset();
+            location.reload();
+            // Close modal
+            $('#editModal').closeModal();
+
+        },
+        error: function (err) {
+            console.error(err);
+            alert('Update failed');
+        }
+    });
+});
+
 
     // Open Delete Modal
 $('.delete-btn').click(function () {
@@ -351,7 +322,7 @@ $('#delete-form').submit(function (e) {
     let id = $('#delete-id').val();
 console.log(id);
     $.ajax({
-         url: `/admin/bannermodel/delete/${id}`
+        url: '/admin/bannermodel/delete/' + id,
         type: 'DELETE',
        
         headers: {
