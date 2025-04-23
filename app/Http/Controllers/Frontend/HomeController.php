@@ -17,10 +17,7 @@ class HomeController extends Controller
        $tvShow = TvShow::get();
     //    $video = Video::where('type', 'Movies')->get();
        $video = Video::get();
-    //    $kids = Kids::get();
-    //    $kids = Kids::get();
-    //    $kids = Kids::get();
-    //    $kids = Kids::get();
+    
 
       $homeBanner =  BannerModel::where('type','Home')->orderBy('id','desc')->get();
 
