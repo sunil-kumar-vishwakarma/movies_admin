@@ -15,6 +15,8 @@ class CreateBannerModelsTable extends Migration
     {
         Schema::create('banner_models', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('description');
             $table->string('image');
             $table->string('type');
             $table->string('upload_link');

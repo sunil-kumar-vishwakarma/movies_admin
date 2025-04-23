@@ -24,7 +24,7 @@
                         <div class="video-image">
                             <div class="video-card-overlay">
                                 <div class="video-card-icons">
-                                    <button class="edit-btn" id="open-edit-modal" data-id="{{ $rows->id }}" 
+                                    <button class="edit-btn" id="open-edit-modal" data-id="{{ $rows->id }}" data-title="{{$rows->title}}" data-description="{{$rows->description}}"
                                 data-image="{{ $rows->image}}" data-type="{{ $rows->type}}" data-upload_link="{{ $rows->upload_link}}"><i class="fas fa-edit"></i></button>
                                     <button class="delete-btn" id="open-delete-modal" data-id="{{ $rows->id }}"><i class="fas fa-trash"></i></button>
                                 </div>
@@ -107,7 +107,15 @@
             <h2>Upload Banner</h2>
             <form id="add-form" enctype="multipart/form-data">
             @csrf
-            
+            <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="Description">Description</label>
+                    <textarea id="description" name="description" class="form-control"></textarea>
+                </div>
+
                 <div class="form-group">
                     <label for="image">Image</label>
                     <input type="file" id="image" name="image" required>
@@ -142,10 +150,20 @@
             <span class="close" id="close-edit-modal">&times;</span>
             <h2>Edit Banner</h2>
             <form id="edit-form">
+            <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="Description">Description</label>
+                    <textarea id="description" name="description" class="form-control"></textarea>
+                </div>
+
                 <div class="form-group">
                     <label for="image">Image</label>
-                    <input type="file" id="image" name="image" required>
-                    <input type="hidden" id="edit-id" name="id" placeholder="Enter Name" required>                    <img id="edit-preview" src=" " style="max-width:100px; margin-top:10px;">
+                    <input type="file" id="image" name="image">
+                    <input type="hidden" id="edit-id" name="id" placeholder="Enter Name">                   
+                    <img id="edit-preview" src=" " style="max-width:100px; margin-top:10px;">
                 </div>
                 <div class="form-group">
                     <label class="input-label">Type</label>
@@ -235,6 +253,8 @@ $(document).ready(function () {
     // Open Edit Modal
     $('.edit-btn').click(function () {
         let id = $(this).data('id');
+        $('#title').val(title);
+        $('#description').val(description);
         $('#edit-id').val(id);
         let type = $(this).data('type');
         $('#type').val(type);
@@ -259,7 +279,7 @@ $('#edit-form').submit(function (e) {
     });
 
     $.ajax({
-        route: 'admin.bannermodel.update/' + id,
+        url: '/admin/bannermodel/update/' + id,
         type: 'POST',
         data: formData,
         contentType: false,

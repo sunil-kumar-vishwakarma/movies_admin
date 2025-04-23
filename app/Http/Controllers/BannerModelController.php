@@ -23,12 +23,14 @@ class BannerModelController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'title' => 'required|string',
+            'description' => 'required|string',
             'type' => 'required|string',
             'image' => 'required|image',
             'upload_link' => 'required',
         ]);
 
-        $data = $request->only('type','upload_link');
+        $data = $request->only('title','description','type','upload_link');
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -54,13 +56,15 @@ class BannerModelController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'title' => 'required|string',
+            'description' => 'required|string',
             'type' => 'required|string',
             // 'image' => 'required|image',
             'upload_link' => 'required',
         ]);
         // print_r($request->all());die;
         $banner = BannerModel::find($id);
-        $data = $request->only('type','upload_link');
+        $data = $request->only('title','description','type','upload_link');
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
