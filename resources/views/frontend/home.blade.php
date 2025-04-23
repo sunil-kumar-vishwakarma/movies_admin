@@ -6,18 +6,32 @@
         <div class="carousel">
           @foreach($homeBanner as $row)
         
-          <div>
+          <!-- <div>
             <img src="{{ asset('/' . $row->image) }}" class="slide" alt="Image">
             <div class="hero-content">
-              <h1>Bhuj: The Pride of India</h1>
+              <h1>{{$row->title}}</h1>
               <p>
-                During the Indo-Pakistani War of 1971, the Bhuj airbase is
-                attacked and a race against time begins to rebuild the damaged
-                airstrip. During the Indo-Pakistani War of 1971, the Bhuj ...
+                {{$row->description}}
               </p>
               <button class="watch-btn">▶ Watch Now</button>
             </div>
+          </div> -->
+          <div>
+            <img src="{{ asset('/' . $row->image) }}" class="slide" alt="Image">
+            <div class="hero-content">
+              <h1>{{ $row->title }}</h1>
+              <p>{{ $row->description }}</p>
+              <p>{{ $row->type }}</p>
+              <!-- <button class="watch-btn" onclick="playVideo('{{ asset('/' . $row->upload_link) }}')">▶ Watch Now</button> -->
+              <button class="watch-btn" onclick="playVideo('{{ asset('/' . $row->upload_link) }}')">▶ Watch Now</button>
+              <video id="videoPlayer" width="640" height="360" controls style="display: none; margin-top: 20px;">
+                  <source id="videoSource" src="" type="video/mp4">
+                  Your browser does not support the video tag.
+              </video>
+            </div>
           </div>
+
+         
           @endforeach
 
           <!-- <div
@@ -867,6 +881,17 @@
       </section><br><br>
     </div>
     </main>
+    <script>
+    function playVideo(videoUrl) {
+        const videoPlayer = document.getElementById('videoPlayer');
+        const videoSource = document.getElementById('videoSource');
+
+        videoSource.src = videoUrl;
+        videoPlayer.load();
+        videoPlayer.style.display = 'block';
+        videoPlayer.play();
+    }
+</script>
 
     
  
