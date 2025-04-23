@@ -26,7 +26,7 @@
               <button class="watch-btn" onclick="playVideo('{{ asset('/' . $row->upload_link) }}')">▶ Watch Now</button>
               <video id="videoPlayer" width="640" height="360" controls style="display: none; margin-top: 20px;">
                   <source id="videoSource" src="" type="video/mp4">
-                  Your browser does not support the video tag.
+                  
               </video>
             </div>
           </div>
