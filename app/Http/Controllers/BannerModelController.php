@@ -87,8 +87,8 @@ class BannerModelController extends Controller
     {
        
         $banners = BannerModel::find($id);
-        if ($avatar->image && file_exists(public_path($avatar->image))) {
-            unlink(public_path($avatar->image));
+        if ($banners->image && file_exists(public_path($banners->image))) {
+            unlink(public_path($banners->image));
         }
 
         $banners->delete();

@@ -194,12 +194,15 @@
         <div class="modal-content">
             <span class="close" id="close-delete-modal">&times;</span>
             <div class="delete-content">
+            <form id="delete-form">
+            <input type="hidden" id="delete-id" name="id">
                 <h2>Delete Banner</h2>
                 <p>Are you sure you want to delete this ?</p>
                 <div class="button-group">
-                    <button type="button" class="submit-btn delete-confirm">Confirm</button>
+                    <button type="submit" class="submit-btn delete-confirm">Confirm</button>
                     <button type="button" class="no-btn delete-cancel">No</button>
                 </div>
+            </form>
             </div>
         </div>
     </div>
@@ -319,7 +322,7 @@ $('#delete-form').submit(function (e) {
     let id = $('#delete-id').val();
 console.log(id);
     $.ajax({
-        url: '/admin/cast/delete/' + id,
+        url: '/admin/bannermodel/delete/' + id,
         type: 'DELETE',
        
         headers: {

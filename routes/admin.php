@@ -174,6 +174,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/bannermodel', [BannerModelController::class, 'bannermodel'])->name('admin.bannermodel');
     Route::post('/admin/bannermodel/store', [BannerModelController::class, 'store'])->name('admin.bannermodel.store');
     Route::post('/admin/bannermodel/update/{id}', [BannerModelController::class, 'update'])->name('admin.bannermodel.update');
+    Route::delete('/admin/bannermodel/delete/{id}', [BannerModelController::class, 'destroy'])->name('admin.bannermodel.delete');
 
     Route::get('/admin/adsvideo', [BannerModelController::class, 'adsvideo'])->name('admin.adsvideo');
 
