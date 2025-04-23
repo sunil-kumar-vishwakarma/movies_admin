@@ -259,7 +259,7 @@ $('#edit-form').submit(function (e) {
     });
 
     $.ajax({
-        url: '/admin/bannermodel/update/' + id,
+        route: 'admin.bannermodel.update/' + id,
         type: 'POST',
         data: formData,
         contentType: false,

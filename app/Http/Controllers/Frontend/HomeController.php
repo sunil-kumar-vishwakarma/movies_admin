@@ -19,7 +19,7 @@ class HomeController extends Controller
        $video = Video::get();
     
 
-      $homeBanner =  BannerModel::where('type','Home')->orderBy('id','desc')->get();
+      $homeBanner =  BannerModel::orderBy('id','desc')->get();
 
         return view('frontend.home', compact('homeBanner','kids','tvShow','video'));
     }

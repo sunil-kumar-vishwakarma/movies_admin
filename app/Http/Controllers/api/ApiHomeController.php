@@ -46,11 +46,9 @@ class ApiHomeController extends Controller
         [
             "name" => "Home",
             "icon" => "assets/images/icon-video.png",
+            "banner" => BannerModel::orderBy('id','desc')->get(),
             "categories" => [
-                [
-                    "name" => "Slider",
-                    "banner" => BannerModel::where('type','Home')->orderBy('id','desc')->get()
-                ],
+               
                 [
                     "name" => "Hollywood",
                     "videos" => Video::get()
@@ -72,11 +70,9 @@ class ApiHomeController extends Controller
         [
             "name" => "Movies",
             "icon" => "assets/images/icon-video.png",
+            "banner" => BannerModel::where('type','Movies')->orderBy('id','desc')->get(),
             "categories" => [
-                [
-                    "name" => "Slider",
-                    "banner" => BannerModel::where('type','Movies')->orderBy('id','desc')->get()
-                ],
+               
                 // [
                 //     "name" => "Trending",
                 //     "videos" => Video::where('tag', 'trending')->get()
@@ -97,12 +93,9 @@ class ApiHomeController extends Controller
         [
             "name" => "Live TV",
             "icon" => "assets/images/RRR.jpg",
+            "banner" => BannerModel::where('type','Live TV')->orderBy('id','desc')->get(),
             "categories" => [
-                [
-                    "name" => "Slider",
-                    "banner" => BannerModel::where('type','Live TV')->orderBy('id','desc')->get()
-                ],
-                
+               
                 [
                     "name" => "Sports",
                     "videos" => TvShow::get()
@@ -148,11 +141,9 @@ class ApiHomeController extends Controller
         [
             "name" => "Upcoming",
             "icon" => "assets/images/icon-video.png",
+            "banner" => BannerModel::where('type','Live TV')->orderBy('id','desc')->get(),
             "categories" => [
-                [
-                    "name" => "Slider",
-                    "banner" => BannerModel::where('type','Upcoming')->orderBy('id','desc')->get()
-                ],
+               
                 // [
                 //     "name" => "Trending",
                 //     "videos" => Video::where('tag', 'trending')->get()
