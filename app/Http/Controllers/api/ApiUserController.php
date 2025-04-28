@@ -11,7 +11,7 @@ use Auth;
 
 use Kreait\Firebase\Auth as FirebaseAuth;
 use Kreait\Firebase\Factory;
-
+use Tymon\JWTAuth\Facades\JWTAuth;
 class ApiUserController extends Controller
 {
     
@@ -158,7 +158,45 @@ public function resendOtp(Request $request)
     //     }
     // }
 
-    public function verifyOtp(Request $request)
+//     public function verifyOtp(Request $request)
+// {
+//     $request->validate([
+//         'phone' => 'required|string',
+//         'otp' => 'required|numeric',
+//     ]);
+
+//     $user = User::where('phone', $request->phone)
+//                 ->where('otp', $request->otp)
+//                 ->first();
+
+//     if (!$user) {
+//         return response()->json([
+//             'status' => false,
+//             'message' => 'Invalid OTP or phone number.',
+//         ], 401);
+//     }
+
+//     // Clear OTP
+//     $user->otp = null;
+//     $user->save();
+
+//     // Generate token
+//     // $token = $user->createToken('auth_token')->plainTextToken;
+
+//     $token = Auth::guard('api')->attempt($user);
+
+//     return response()->json([
+//         'status' => true,
+//         'message' => 'OTP verified successfully',
+//         'access_token' => $token,
+//         'token_type' => 'Bearer',
+//         'user' => $user
+//     ]);
+// }
+
+
+
+public function verifyOtp(Request $request)
 {
     $request->validate([
         'phone' => 'required|string',
@@ -180,8 +218,8 @@ public function resendOtp(Request $request)
     $user->otp = null;
     $user->save();
 
-    // Generate token
-    $token = $user->createToken('auth_token')->plainTextToken;
+    // ✅ Correct way to generate token
+    $token = JWTAuth::fromUser($user);
 
     return response()->json([
         'status' => true,

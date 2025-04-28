@@ -44,5 +44,8 @@ class Video extends Model
         'thumbnail_image',
         'landscape_image',
     ];
-
+    public function video()
+    {
+        return $this->belongsTo(Video::class, 'video_id');
+    }
 }

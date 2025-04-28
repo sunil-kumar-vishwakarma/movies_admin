@@ -21,6 +21,10 @@ return [
             'driver' => 'session',
             'provider' => 'producers',
         ],
+        'api' => [
+        'driver' => 'jwt', // ← यहाँ driver 'jwt' लिखा है
+        'provider' => 'users',
+    ],
     ],
 
     'providers' => [

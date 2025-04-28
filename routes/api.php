@@ -21,6 +21,15 @@ Route::post('/user/resend-otp', [ApiUserController::class, 'resendOtp']);
 
 Route::post('/user/verify_otp', [ApiUserController::class, 'verifyOtp']);
 Route::get('/home_page_api', [ApiHomeController::class, 'home']);
+Route::post('/searchMovies', [ApiHomeController::class, 'searchMovies']);
+// Route::post('/watchlist/add', [ApiHomeController::class, 'addToWatchList']);
+Route::middleware('auth:api')->post('watchlist/add', [ApiHomeController::class, 'addToWatchList']);
+Route::middleware('auth:api')->post('watchlist', [ApiHomeController::class, 'watchList']);
+// routes/api.php
+Route::middleware('auth:api')->post('/watchlist/remove', [ApiHomeController::class, 'removeFromWatchList']);
+// Route::post('/watchlist', [ApiHomeController::class, 'getWatchList']);
+// Route::post('/watchlist/remove', [ApiHomeController::class, 'removeFromWatchList']);
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
