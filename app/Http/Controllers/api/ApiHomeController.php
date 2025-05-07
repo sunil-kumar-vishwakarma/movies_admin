@@ -11,6 +11,8 @@ use App\Models\Episode;
 use App\Models\TvShow;
 use App\Models\BannerModel;
 use App\Models\WatchList;
+use App\Models\Cast;
+use App\Models\Producer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -423,4 +425,84 @@ public function removeFromWatchList(Request $request)
     ]);
 }
 
+
+public function cast()
+{
+    // Get the authenticated user
+    $user = auth::user();
+
+    // If user is not authenticated, return an error
+    // if (!$user) {
+    //     return response()->json([
+    //         'status' => false,
+    //         'message' => 'User not authenticated.',
+    //         'watchlist' => []
+    //     ], 401);
+    // }
+
+    // // Get the user_id from the authenticated user
+    // $user_id = $user->id;
+
+    // Fetch the watchlist items for the authenticated user and eager load both video and user details
+    $cast = Cast::get();
+
+    // If no items in the watchlist, return an empty array
+    if ($cast->isEmpty()) {
+        return response()->json([
+            'status' => true,
+            'message' => 'Your cast is empty.',
+            'watchlist' => []
+        ]);
+    }
+
+    // Prepare the cast array with video and user details
+    
+
+    return response()->json([
+        'status' => true,
+        'message' => 'cast fetched successfully.',
+        'user_details'=>$user,
+        'castList' => $cast
+    ]);
+}
+
+public function producer()
+{
+    // Get the authenticated user
+    $user = auth::user();
+
+    // If user is not authenticated, return an error
+    // if (!$user) {
+    //     return response()->json([
+    //         'status' => false,
+    //         'message' => 'User not authenticated.',
+    //         'watchlist' => []
+    //     ], 401);
+    // }
+
+    // // Get the user_id from the authenticated user
+    // $user_id = $user->id;
+
+    // Fetch the watchlist items for the authenticated user and eager load both video and user details
+    $producer = Producer::get();
+
+    // If no items in the watchlist, return an empty array
+    if ($cast->isEmpty()) {
+        return response()->json([
+            'status' => true,
+            'message' => 'Your producer is empty.',
+            'watchlist' => []
+        ]);
+    }
+
+    // Prepare the cast array with video and user details
+    
+
+    return response()->json([
+        'status' => true,
+        'message' => 'producer fetched successfully.',
+        'user_details'=>$user,
+        'castList' => $producer
+    ]);
+}
 }

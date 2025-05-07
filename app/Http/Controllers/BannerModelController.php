@@ -16,10 +16,7 @@ class BannerModelController extends Controller
        $bannerModel=  BannerModel::all();
         return view('admin.bannermodel', compact('bannerModel','categories','type'));
     }
-    public function adsvideo()
-    {
-        return view('admin.adsvideo');
-    }
+    
     public function store(Request $request)
     {
         $request->validate([

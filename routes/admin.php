@@ -32,6 +32,7 @@ use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\LiveController;
 use App\Http\Controllers\KidsController;
 use App\Http\Controllers\KidsEpisodeController;
+use App\Http\Controllers\AdsVideoController;
 
 
 // Admin Login Routes
@@ -156,9 +157,15 @@ Route::middleware(['auth:admin'])->group(function () {
 
     // coupon
     Route::get('/admin/coupon', [CouponController::class, 'index'])->name('admin.coupon');
+    Route::post('/admin/coupon/add', [CouponController::class, 'store'])->name('admin.coupon.add');
+    Route::post('/admin/coupon/update/{id}', [CouponController::class, 'update'])->name('admin.coupon.update');
+    Route::delete('/admin/coupon/delete/{id}', [CouponController::class, 'destroy'])->name('admin.coupon.delete');
 
     // rent-price
     Route::get('/admin/rent-price-list', [RentPriceListController::class, 'index'])->name('admin.rent-price');
+    Route::post('/admin/rent-price/add', [RentPriceListController::class, 'store'])->name('admin.rent-price.store');
+    Route::post('/admin/rent-price/update/{id}', [RentPriceListController::class, 'update'])->name('admin.rent-price.update');
+    Route::delete('/admin/rent-price/delete/{id}', [RentPriceListController::class, 'destroy'])->name('admin.rent-price.delete');
 
     // rent-transaction
     Route::get('/admin/rent-transaction', [RenttransactionController::class, 'index'])->name('admin.rent-transaction');
@@ -176,7 +183,10 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('/admin/bannermodel/update/{id}', [BannerModelController::class, 'update'])->name('admin.bannermodel.update');
     Route::delete('/admin/bannermodel/delete/{id}', [BannerModelController::class, 'destroy'])->name('admin.bannermodel.delete');
 
-    Route::get('/admin/adsvideo', [BannerModelController::class, 'adsvideo'])->name('admin.adsvideo');
+    Route::get('/admin/adsvideo', [AdsVideoController::class, 'adsvideo'])->name('admin.adsvideo');
+    Route::post('/admin/adsvideo/add', [AdsVideoController::class, 'store'])->name('admin.adsvideo.store');
+    Route::post('/admin/adsvideo/update/{id}', [AdsVideoController::class, 'update'])->name('admin.adsvideo.update');
+    Route::delete('/admin/adsvideo/delete/{id}', [AdsVideoController::class, 'destroy'])->name('admin.adsvideo.destroy');
 
 
     Route::get('/admin/pages', [PagesController::class, 'pages'])->name('admin.pages.pages');

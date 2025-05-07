@@ -27,7 +27,7 @@ Route::middleware('auth:api')->post('watchlist/add', [ApiHomeController::class, 
 Route::middleware('auth:api')->post('watchlist', [ApiHomeController::class, 'watchList']);
 // routes/api.php
 Route::middleware('auth:api')->post('/watchlist/remove', [ApiHomeController::class, 'removeFromWatchList']);
-// Route::post('/watchlist', [ApiHomeController::class, 'getWatchList']);
+Route::get('/cast', [ApiHomeController::class, 'cast']);
 // Route::post('/watchlist/remove', [ApiHomeController::class, 'removeFromWatchList']);
 
 
