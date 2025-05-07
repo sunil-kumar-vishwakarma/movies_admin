@@ -21,6 +21,7 @@ Route::post('/user/resend-otp', [ApiUserController::class, 'resendOtp']);
 
 Route::post('/user/verify_otp', [ApiUserController::class, 'verifyOtp']);
 Route::get('/home_page_api', [ApiHomeController::class, 'home']);
+Route::get('/privacy_policy', [ApiHomeController::class, 'privacyPage']);
 Route::post('/searchMovies', [ApiHomeController::class, 'searchMovies']);
 // Route::post('/watchlist/add', [ApiHomeController::class, 'addToWatchList']);
 Route::middleware('auth:api')->post('watchlist/add', [ApiHomeController::class, 'addToWatchList']);

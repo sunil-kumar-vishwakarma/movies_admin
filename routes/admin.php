@@ -194,5 +194,8 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/system_settings', [SettingsController::class, 'system_settings'])->name('admin.system_settings');
     Route::get('/admin/panel_settings', [SettingsController::class, 'panel_settings'])->name('admin.panel_settings');
 
-    Route::get('/admin/pages-edit', [PagesController::class, 'edit'])->name('admin.pages.edit');
+    Route::get('/admin/pages/edit/{id}', [PagesController::class, 'edit'])->name('admin.pages.edit');
+    Route::post('/admin/pages/update', [PagesController::class, 'update'])->name('admin.pages.update');
+    // Route::get('/admin/pages/{id}/edit', [PageController::class, 'edit'])->name('admin.pages.edit');
+
 });

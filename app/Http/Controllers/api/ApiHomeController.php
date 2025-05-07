@@ -12,6 +12,7 @@ use App\Models\TvShow;
 use App\Models\BannerModel;
 use App\Models\WatchList;
 use App\Models\Cast;
+use App\Models\Page;
 use App\Models\Producer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -505,4 +506,28 @@ public function producer()
         'castList' => $producer
     ]);
 }
+public function privacyPage()
+{
+    
+    $page = Page::get();
+
+    // If no items in the watchlist, return an empty array
+    if ($page->isEmpty()) {
+        return response()->json([
+            'status' => true,
+            'message' => 'Your page is empty.',
+            'page_list' => []
+        ]);
+    }
+
+    // Prepare the cast array with video and user details
+    
+
+    return response()->json([
+        'status' => true,
+        'message' => 'Page  successfully.',
+        'page' => $page
+    ]);
+}
+
 }

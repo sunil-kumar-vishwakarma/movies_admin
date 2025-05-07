@@ -35,7 +35,7 @@
         </div>
         <table class="table">
             <thead>
-                <tr>
+                <tr><th>Sno</th>
                     <th>Icon</th>
                     <th>Title</th>
                     <th>Sub Title</th>
@@ -43,66 +43,32 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td> <img class="icon-logo"
+                @foreach($params as $rows)
+                
+                <tr><td>{{$rows->id}}</td>
+                    <td> 
+                    @if($rows->icon)
+                    
+                    <img src="{{ asset('/' . $rows->icon) }}" width="60" alt="Image">
+                @else
+                <img class="icon-logo"
                             src="https://static.vecteezy.com/system/resources/thumbnails/018/930/460/small/instagram-logo-instagram-icon-transparent-free-png.png"
-                            alt="Logo"></td>
-                    <td>About Us</td>
-                    <td>About Us</td>
+                            alt="Logo">
+                @endif
+                        
+                    </td>
+                    <td>{{$rows->title}}</td>
+                    <td>{{$rows->subtitle}}</td>
                     <td>
-                        <a href="{{ route('admin.pages.edit') }}">
-                            <button class="edit-btn"><i class="fas fa-edit"></i></button>
-                        </a>
+                    <a href="{{url('admin/pages/edit/').'/'.$rows->id}}">
+                        <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                    </a>
                         <a href="#">
                             <button class="pages-view"><i class="fas fa-eye"></i></button>
                         </a>
                     </td>
                 </tr>
-                <tr>
-                    <td> <img class="icon-logo"
-                            src="https://static.vecteezy.com/system/resources/thumbnails/018/930/460/small/instagram-logo-instagram-icon-transparent-free-png.png"
-                            alt="Logo"></td>
-                    <td>Privacy Policy</td>
-                    <td>Privacy Policy</td>
-                    <td>
-                        <a href="{{ route('admin.pages.edit') }}">
-                            <button class="edit-btn"><i class="fas fa-edit"></i></button>
-                        </a>
-                        <a href="#">
-                            <button class="pages-view"><i class="fas fa-eye"></i></button>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td> <img class="icon-logo"
-                            src="https://static.vecteezy.com/system/resources/thumbnails/018/930/460/small/instagram-logo-instagram-icon-transparent-free-png.png"
-                            alt="Logo"></td>
-                    <td>Refund Policy</td>
-                    <td>Refund Policy</td>
-                    <td>
-                        <a href="{{ route('admin.pages.edit') }}">
-                            <button class="edit-btn"><i class="fas fa-edit"></i></button>
-                        </a>
-                        <a href="#">
-                            <button class="pages-view"><i class="fas fa-eye"></i></button>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td> <img class="icon-logo"
-                            src="https://static.vecteezy.com/system/resources/thumbnails/018/930/460/small/instagram-logo-instagram-icon-transparent-free-png.png"
-                            alt="Logo"></td>
-                    <td>Terms & Conditions</td>
-                    <td>Terms & Conditions</td>
-                    <td>
-                        <a href="{{ route('admin.pages.edit') }}">
-                            <button class="edit-btn"><i class="fas fa-edit"></i></button>
-                        </a>
-                        <a href="#">
-                            <button class="pages-view"><i class="fas fa-eye"></i></button>
-                        </a>
-                    </td>
-                </tr>
+                @endforeach
 
 
             </tbody>
