@@ -25,6 +25,7 @@ class AdsVideoController extends Controller
         ]);
 
         $data = $request->only(
+        'name',
         'type',
         'upload_video',
         'category',
@@ -73,6 +74,7 @@ class AdsVideoController extends Controller
         $adsVideo = AdsVideo::find($id);
         // dd($adsVideo);
         $data = $request->only(
+        'name',
         'type',
         'upload_video',
         'category',

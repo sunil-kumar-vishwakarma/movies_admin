@@ -16,6 +16,7 @@ class CreateAdsVideosTable extends Migration
         Schema::create('ads_videos', function (Blueprint $table) {
             $table->id();
             $table->string('type');
+            $table->string('name');
             $table->string('upload_video');
             $table->string('category');
             $table->string('language');

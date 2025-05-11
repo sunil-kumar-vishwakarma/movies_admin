@@ -89,8 +89,12 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::delete('/admin/cast/delete/{id}', [CastController::class, 'destroy'])->name('admin.cast.destroy');
 
     // banner
-    Route::get('/admin/home', [BannerController::class, 'home'])->name('admin.banner.home');
-
+    // Route::get('/admin/home', [BannerController::class, 'home'])->name('admin.banner.home');
+    Route::get('admin/banner/home', [BannerController::class, 'index'])->name('admin.banner.home');
+    Route::post('admin/banner/store', [BannerController::class, 'store'])->name('banner.store');
+    Route::delete('admin/banner/destroy', [BannerController::class, 'destroy'])->name('banner.destroy');
+        Route::post('admin/banner/typebyvideo', [BannerController::class, 'TypeByVideo'])->name('bannerTypeByVideo');
+        Route::post('admin/banner/list', [BannerController::class, 'BannerList'])->name('bannerList');
     // section
     Route::get('/admin/index', [SectionController::class, 'index'])->name('admin.section.index');
     Route::post('/admin/index/store', [SectionController::class, 'store'])->name('admin.section.index.store');
@@ -124,7 +128,12 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('/admin/videos/video_720', [VideosController::class, 'uploadVideo720'])->name('upload.video.720');
     Route::post('/admin/videos/video_1080', [VideosController::class, 'uploadVideo1080'])->name('upload.video.1080');
     Route::post('/admin/videos/store', [VideosController::class, 'store'])->name('admin.videos.store');
-    Route::get('/admin/videos/edit', [VideosController::class, 'edit'])->name('admin.videos.edit');
+    Route::post('/admin/videos/update/{id}', [VideosController::class, 'update'])->name('admin.videos.update');
+    // Route::get('/admin/videos/edit/{id}', [VideosController::class, 'edit'])->name('admin.videos.edit');
+    Route::get('/admin/videosedit/{id}', [VideosController::class, 'edit'])->name('admin.videosedit');
+
+    Route::post('/admin/video/saveChunk', [VideosController::class, 'saveChunk']);
+
 
     // tv shows
     Route::get('/admin/tvshows', [TVshowsController::class, 'index'])->name('admin.tvshows.index');
@@ -172,11 +181,16 @@ Route::middleware(['auth:admin'])->group(function () {
 
     // subscription
     Route::get('/admin/subscription/package', [SubscriptionController::class, 'package'])->name('admin.subscription.package');
+    Route::post('/admin/subscription/package/store', [SubscriptionController::class, 'store'])->name('admin.subscription.package.store');
+    Route::post('/admin/subscription/package/update/{id}', [SubscriptionController::class, 'update'])->name('admin.subscription.package.update');
+    Route::delete('/admin/subscription/package/destroy/{id}', [SubscriptionController::class, 'destroy'])->name('admin.subscription.package.destroy');
     Route::get('/admin/subscription/transaction', [SubscriptionController::class, 'transaction'])->name('admin.subscription.transaction');
     Route::get('/admin/subscription/payment', [SubscriptionController::class, 'payment'])->name('admin.subscription.payment');
 
     //   Admob
     Route::get('/admin/admob', [AdMobController::class, 'admob'])->name('admin.admob');
+    Route::post('admob/android', [AdMobController::class, 'admobAndroid'])->name('admob.android');
+    Route::post('admob/ios', [AdMobController::class, 'admobIos'])->name('admob.ios');
 
     Route::get('/admin/bannermodel', [BannerModelController::class, 'bannermodel'])->name('admin.bannermodel');
     Route::post('/admin/bannermodel/store', [BannerModelController::class, 'store'])->name('admin.bannermodel.store');
@@ -191,7 +205,23 @@ Route::middleware(['auth:admin'])->group(function () {
 
     Route::get('/admin/pages', [PagesController::class, 'pages'])->name('admin.pages.pages');
     Route::get('/admin/app_settings', [SettingsController::class, 'app_settings'])->name('admin.app_settings');
+    Route::post('/admin/setting/app', [SettingsController::class, 'app'])->name('admin.setting.app');
+    Route::post('setting/tmdbkey', [SettingsController::class, 'saveTmdbKey'])->name('setting.tmdbkey');
+    Route::post('setting/currency', [SettingsController::class, 'currency'])->name('setting.currency');
+    Route::post('setting/basicconfigrations', [SettingsController::class, 'saveBasicConfigrations'])->name('setting.basicconfigrations');
+    Route::post('setting/smtp', [SettingsController::class, 'smtpSave'])->name('smtp.save');
+    Route::post('setting/sociallink', [SettingsController::class, 'saveSocialLink'])->name('settingSocialLink');
+    Route::post('setting/onboardingscreen', [SettingsController::class, 'saveOnBoardingScreen'])->name('settingOnBoardingScreen');
+    Route::post('setting/vapidkey', [SettingsController::class, 'vapIdKey'])->name('setting.vapidkey');
+
     Route::get('/admin/system_settings', [SettingsController::class, 'system_settings'])->name('admin.system_settings');
+    Route::post('systemsetting/cleardata', [SettingsController::class, 'ClearData'])->name('system.setting.cleardata');
+    Route::post('systemsetting/dummydata', [SettingsController::class, 'DummyData'])->name('system.setting.dummydata');
+    Route::post('systemsetting/cleandatabase', [SettingsController::class, 'CleanDatabase'])->name('system.setting.cleandatabase');
+    Route::post('/admin/clear-cache', [SettingsController::class, 'clearCache'])->name('admin.clear.cache');
+    Route::get('systemsetting/downloadsqlfile', [SettingsController::class, 'DownloadSqlFile'])->name('system.setting.downloadsqlfile');
+           
+
     Route::get('/admin/panel_settings', [SettingsController::class, 'panel_settings'])->name('admin.panel_settings');
 
     Route::get('/admin/pages/edit/{id}', [PagesController::class, 'edit'])->name('admin.pages.edit');

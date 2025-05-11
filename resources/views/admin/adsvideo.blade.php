@@ -41,7 +41,7 @@
                         <div class="video-image">
                             <div class="video-card-overlay">
                                 <div class="video-card-icons">
-                                <button class="edit-btn" id="open-edit-modal" data-id="{{ $rows->id }}" 
+                                <button class="edit-btn" id="open-edit-modal" data-id="{{ $rows->id }}"  data-adsname="{{ $rows->name }}" 
                                 data-type="{{ $rows->type }}"
                                 data-upload_video="{{ $rows->upload_video}}" data-category="{{ $rows->category }}" data-language="{{ $rows->language }}" data-thumbnail_image="{{ $rows->thumbnail_image }}" data-landscape_image="{{ $rows->landscape_image }}"><i class="fas fa-edit"></i></button>
                                     <button class="delete-btn" id="open-delete-modal" data-id="{{ $rows->id }}"><i class="fas fa-trash"></i></button>
@@ -59,7 +59,7 @@
 
                         </div>
                         <div class="video-info">
-                            <div class="video-title">News 24</div>
+                            <div class="video-title">{{$rows->name}}</div>
                             <button class="toggle-show-btn">Show</button>
                         </div>
                     </div>
@@ -130,6 +130,10 @@
             @csrf
 
                 <div class="form-group">
+                    <label for="image">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group">
                     <label class="input-label">Type</label>
                     <select class="sort-select" id="sort-select" name="type">
                         <option value="all">All Type</option>
@@ -181,6 +185,9 @@
             <span class="close" id="close-edit-modal">&times;</span>
             <h2>Edit Video</h2>
             <form id="edit-form">
+                <div class="form-group">
+                <input type="text" class="form-control" id="adsname" name="name" required>
+            </div>
             <input type="hidden" id="edit-id" name="id" placeholder="Enter Name" required>
                 <div class="form-group">
                     <label class="input-label">Type</label>
@@ -193,7 +200,7 @@
                 </div>
                 <div class="form-group">
                     <label for="image">Upload Video</label>
-                    <input type="file" id="upload_video" name="upload_video" required>
+                    <input type="file" id="upload_video" name="upload_video">
                 </div>
                 <div class="form-group">
                     <label for="user-name">Category</label>
@@ -216,13 +223,13 @@
                 </div>
                 <div class="form-group">
                     <label for="image">Thumbnail Image</label>
-                    <input type="file" id="thumbnail_image" name="thumbnail_image" required>
+                    <input type="file" id="thumbnail_image" name="thumbnail_image">
                     <img id="edit-preview-thumbnail" src=" " style="max-width:70px; max-height:70px; margin-top:10px;">
 
                 </div>
                 <div class="form-group">
                     <label for="image">Landscape Image</label>
-                    <input type="file" id="landscape_image" name="landscape_image" required>
+                    <input type="file" id="landscape_image" name="landscape_image">
                     <img id="edit-preview" src=" " style="max-width:70px; max-height:70px; margin-top:10px;">
 
                 </div>
@@ -300,6 +307,7 @@ $(document).ready(function () {
 // Open Edit Modal
 $('.edit-btn').click(function () {
     let id = $(this).data('id');
+    let adsname = $(this).data('adsname');
     let type = $(this).data('type');
     let category = $(this).data('category');
     let language = $(this).data('language');
@@ -307,6 +315,7 @@ $('.edit-btn').click(function () {
     let landscape_image = $(this).data('landscape_image');
 
     $('#edit-id').val(id);
+    $('#adsname').val(adsname);
     $('#type').val(type);
     $('#category').val(category);
     $('#language').val(language);

@@ -35,15 +35,20 @@
                     </div>
 
                     @foreach($videos as $rows)
+                   
                     <div class="video-card">
                         <div class="video-image">
                             <div class="video-card-overlay">
                                 <button class="play-btn"><i class="fas fa-play"></i></button>
                                 <div class="video-card-icons">
                                     {{-- <button class="chart-btn"><i class="fas fa-chart-line"></i></button> --}}
-                                    <a href="{{ route('admin.videos.edit') }}">
+                                    
+                                    <a class="btn" href="{{route('admin.videosedit', [$rows->id])}}" title="{{__('label.edit')}}">
                                         <button class="edit-btn"><i class="fas fa-edit"></i></button>
                                     </a>
+
+
+
                                     <button class="delete-btn" id="open-delete-modal"><i class="fas fa-trash"></i></button>
                                 </div>
                             </div>
@@ -58,31 +63,12 @@
 
                         </div>
                         <div class="video-info">
-                            <div class="video-title">Avengers: {{$rows->movies_name}}</div>
+                            <div class="video-title">Avengers: {{$rows->name}}</div>
                             <button class="toggle-show-btn">Show</button>
                         </div>
                     </div>
                     @endforeach
-                    <!-- <div class="video-card">
-                        <div class="video-image">
-                            <div class="video-card-overlay">
-                                <button class="play-btn"><i class="fas fa-play"></i></button>
-                                <div class="video-card-icons">
-                                    {{-- <button class="chart-btn"><i class="fas fa-chart-line"></i></button> --}}
-                                    <a href="{{ route('admin.videos.edit') }}">
-                                        <button class="edit-btn"><i class="fas fa-edit"></i></button>
-                                    </a>
-                                    <button class="delete-btn" id="open-delete-modal"><i class="fas fa-trash"></i></button>
-                                </div>
-                            </div>
-                            <img src="https://img.wprost.pl/img/avengers-endgame-recenzja/94/5f/85b10425332b90b0073d9cdb01c0.webp"
-                                alt="Thumbnail" class="video-thumbnail">
-                        </div>
-                        <div class="video-info">
-                            <div class="video-title">Avengers: Endgame</div>
-                            <button class="toggle-show-btn">Show</button>
-                        </div>
-                    </div> -->
+                    
 
                     <!-- Repeat the above video-card div for each video -->
                 </div>

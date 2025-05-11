@@ -48,4 +48,9 @@ class Video extends Model
     {
         return $this->belongsTo(Video::class, 'video_id');
     }
+    // public function videoType()
+// {
+//     return $this->belongsTo(VideoType::class, 'type');
+// }
+
 }

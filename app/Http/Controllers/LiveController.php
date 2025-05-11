@@ -9,7 +9,8 @@ class LiveController extends Controller
 {
     public function live()
     {
-        return view('admin.live.index');
+        $livevideo = LiveVideo::all();
+        return view('admin.live.index', compact('livevideo'));
     }
     public function edit()
     {

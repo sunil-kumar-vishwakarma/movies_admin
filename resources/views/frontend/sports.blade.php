@@ -3,7 +3,7 @@
 @section('content')
 
     <main>
-      <section class="hero">
+      <!-- <section class="hero">
         <div class="carousel">
           <div
             class="slide active"
@@ -57,7 +57,61 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> -->
+
+      <section class="hero">
+  <div class="carousel">
+    <img id="carouselImage" src="{{ asset('/' . $banner[0]->thumbnail_image) }}" class="slide" alt="Image">
+    <div class="hero-content">
+      <h1 id="carouselTitle">{{ $banner[0]->name }}</h1>
+      <p id="carouselCategory">{{ $banner[0]->category }}</p>
+      <button class="watch-btn" id="watchBtn">▶ Watch Now</button>
+      <video id="videoPlayer" width="640" height="360" controls style="display: none; margin-top: 20px;">
+        <source id="videoSource" src="" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<script>
+  const banners = @json($banner);
+  let current = 0;
+
+  const img = document.getElementById('carouselImage');
+  const title = document.getElementById('carouselTitle');
+  const category = document.getElementById('carouselCategory');
+  const watchBtn = document.getElementById('watchBtn');
+  const videoPlayer = document.getElementById('videoPlayer');
+  const videoSource = document.getElementById('videoSource');
+
+  function updateSlide(index) {
+    const data = banners[index];
+    img.src = `/${data.thumbnail_image}`;
+    title.textContent = data.name;
+    category.textContent = data.category;
+
+    // Remove video (if any playing)
+    videoPlayer.style.display = 'none';
+    videoSource.src = '';
+    videoPlayer.load();
+
+    // Update watch button action
+    watchBtn.onclick = () => {
+      videoSource.src = `/${data.upload_link}`;
+      videoPlayer.style.display = 'block';
+      videoPlayer.load();
+      videoPlayer.play();
+    };
+  }
+
+  setInterval(() => {
+    current = (current + 1) % banners.length;
+    updateSlide(current);
+  }, 5000);
+
+  // Init first slide
+  updateSlide(current);
+</script>
 
     </main>
 

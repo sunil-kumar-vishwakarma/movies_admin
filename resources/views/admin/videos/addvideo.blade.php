@@ -47,9 +47,11 @@
                     <label class="input-label">Type*</label>
                     <select class="video-select" name="type" id="type">
                         <option>Select Type</option>
-                        <option value="Comedy">Comedy</option>
-                        <option value="Sports">Sports</option>
-                        <option value="Horror">Horror</option>
+                        @foreach($types as $rows)
+                        <option value="{{$rows->id}}">{{$rows->name}}</option>
+                        @endforeach
+                        <!-- <option value="Sports">Sports</option>
+                        <option value="Horror">Horror</option> -->
                     </select>
                 </div>
 
@@ -57,15 +59,17 @@
                     <label class="input-label">Ads Video*</label>
                     <select class="video-select" name="ads_video" id="ads_video">
                         <option>Select Ads Video</option>
-                        <option value="Shoes">Shoes</option>
-                        <option value="News24">News24</option>
+                        @foreach($adsVideo as $rows)
+                        <option value="{{$rows->id}}">{{$rows->name}}</option>
+                        @endforeach
+                        <!-- <option value="News24">News24</option>
                         <option value="Marketing">Marketing</option>
                         <option value="Cream Lemon Dark">Cream Lemon Dark</option>
                         <option value="news">news</option>
                         <option value="Headphones">Headphones</option>
                         <option>
                             Google Ads Tutorial 2025 (Step by Step) How To Use Google Ads
-                        </option>
+                        </option> -->
                     </select>
                 </div>
 
@@ -80,26 +84,10 @@
                     <label class="input-label">Category*</label>
                     <select class="video-select" name="category" id="category">
                         <option value="">All Category</option>
-                        <option value="Today">Thriller</option>
-                        <option value="Month">Fantasy</option>
-                        <option value="Year">Adventure</option>
-                        <option value="Year">Language</option>
-                        <option value="Year">Sci-Fi & Fantasy</option>
-                        <option value="Year">News</option>
-                        <option value="Year">Action & Adventure</option>
-                        <option value="Year">Mystery</option>
-                        <option value="Year">Animation</option>
-                        <option value="Year">Family</option>
-                        <option value="Year">Horror</option>
-                        <option value="Year">Science Fiction</option>
-                        <option value="Year">Romance</option>
-                        <option value="Year">Drama</option>
-                        <option value="Year">Action</option>
-                        <option value="Year">Serials</option>
-                        <option value="Year">Kids</option>
-                        <option value="Year">Comedy</option>
-                        <option value="Year">Hollywood</option>
-                        <option value="Year">Bollywood</option>
+                        @foreach($category as $rows)
+                        <option value="{{$rows->id}}">{{$rows->name}}</option>
+                        @endforeach
+                        
                     </select>
                 </div>
                 <div class="input-group">
@@ -107,8 +95,10 @@
                     <select class="video-select" name="language" id="language">
                         <option value="">All Language</option>
                         <option value="Language">No Language</option>
-                        <option value="Hindi">Hindi</option>
-                        <option value="English">English</option>
+                        @foreach($language as $rows)
+                        <option value="{{$rows->id}}">{{$rows->name}}</option>
+                        @endforeach
+                        <!-- <option value="English">English</option>
                         <option value="Urdu">Urdu</option>
                         <option value="Marathi">Marathi</option>
                         <option value="Gujarati">Gujarati</option>
@@ -116,13 +106,19 @@
                         <option value="German">German</option>
                         <option value="Punjabi">Punjabi</option>
                         <option value="Korean">Korean</option>
-                        <option value="French">French</option>
+                        <option value="French">French</option> -->
                     </select>
                 </div>
 
                 <div class="input-group">
                     <label class="input-label">Cast*</label>
-                    <input type="text" class="video-input" name="cast" id="cast" placeholder="Add Cast">
+                    <select class="video-select" name="cast" id="cast">
+                    @foreach($cast as $rows)
+                        <!-- <option value="Language">No Language</option> -->
+                        <option value="{{$rows->id}}">{{$rows->name}}</option>
+                        @endforeach
+                    <!-- <input type="text" class="video-input" name="cast" id="cast" placeholder="Add Cast"> -->
+                    </select>
                 </div>
 
 
@@ -167,11 +163,11 @@
                     <h4 class="filter-title">Is Premium *</h4>
                     <div class="input-row1">
                         <div class="input-item">
-                            <input type="radio" id="upload-asc" name="is_premium" value="asc">
+                            <input type="radio" id="upload-asc" name="is_premium" value="yes">
                             <label for="upload-asc">Yes</label>
                         </div>
                         <div class="input-item">
-                            <input type="radio" id="upload-desc" name="is_premium" value="desc" checked>
+                            <input type="radio" id="upload-desc" name="is_premium" value="no" checked>
                             <label for="upload-desc">No</label>
                         </div>
                     </div>
@@ -180,11 +176,11 @@
                     <h4 class="filter-title">Is Title *</h4>
                     <div class="input-row1">
                         <div class="input-item">
-                            <input type="radio" id="upload-asc" name="is_title" value="asc">
+                            <input type="radio" id="upload-asc" name="is_title" value="yes">
                             <label for="upload-asc">Yes</label>
                         </div>
                         <div class="input-item">
-                            <input type="radio" id="upload-desc" name="is_title" value="desc" checked>
+                            <input type="radio" id="upload-desc" name="is_title" value="no" checked>
                             <label for="upload-desc">No</label>
                         </div>
                     </div>
@@ -193,11 +189,11 @@
                     <h4 class="filter-title">Is Download *</h4>
                     <div class="input-row1">
                         <div class="input-item">
-                            <input type="radio" id="upload-asc" name="is_download" value="asc">
+                            <input type="radio" id="upload-asc" name="is_download" value="yes">
                             <label for="upload-asc">Yes</label>
                         </div>
                         <div class="input-item">
-                            <input type="radio" id="upload-desc" name="is_download" value="desc" checked>
+                            <input type="radio" id="upload-desc" name="is_download" value="no" checked>
                             <label for="upload-desc">No</label>
                         </div>
                     </div>
@@ -215,6 +211,15 @@
                     </div>
                     <button class="Upload-btn" onclick="uploadVideo()"> Upload Files</button>
                     <input type="text" id="video_320_url" name="upload_video_320_url">
+
+                                    <!-- <div class="form-group">
+                                        <input type="file" id="uploadFile" name="uploadFile" style="position: relative; z-index: 1;" class="form-control">
+                                    </div> -->
+                                    <input type="hidden" name="video_320" id="mp3_file_name" class="form-control">
+
+                                    <div class="form-group">
+                                        <a id="upload" class="btn Upload-btn" style="background-color:#4e45b8;">Upload Files</a>
+                                    </div>
 
                 </div>
 
@@ -358,11 +363,11 @@
                     <h4 class="filter-title">Is Rent *</h4>
                     <div class="input-row1">
                         <div class="input-item">
-                            <input type="radio" id="upload-asc" name="is_rent" value="asc">
+                            <input type="radio" id="upload-asc" name="is_rent" value="yes">
                             <label for="upload-asc">Yes</label>
                         </div>
                         <div class="input-item">
-                            <input type="radio" id="upload-desc" name="is_rent" value="desc" checked>
+                            <input type="radio" id="upload-desc" name="is_rent" value="no" checked>
                             <label for="upload-desc">No</label>
                         </div>
                     </div>
@@ -371,11 +376,11 @@
                     <h4 class="filter-title">Is Comment *</h4>
                     <div class="input-row1">
                         <div class="input-item">
-                            <input type="radio" id="upload-asc" name="is_comment" value="asc">
+                            <input type="radio" id="upload-asc" name="is_comment" value="yes">
                             <label for="upload-asc">Yes</label>
                         </div>
                         <div class="input-item">
-                            <input type="radio" id="upload-desc" name="is_comment" value="desc" checked>
+                            <input type="radio" id="upload-desc" name="is_comment" value="no" checked>
                             <label for="upload-desc">No</label>
                         </div>
                     </div>
@@ -384,11 +389,11 @@
                     <h4 class="filter-title">Is Like *</h4>
                     <div class="input-row1">
                         <div class="input-item">
-                            <input type="radio" id="upload-asc" name="is_like" value="asc">
+                            <input type="radio" id="upload-asc" name="is_like" value="yes">
                             <label for="upload-asc">Yes</label>
                         </div>
                         <div class="input-item">
-                            <input type="radio" id="upload-desc" name="is_like" value="desc" checked>
+                            <input type="radio" id="upload-desc" name="is_like" value="no" checked>
                             <label for="upload-desc">No</label>
                         </div>
                     </div>
@@ -417,6 +422,130 @@
 
         </form>
     </div>
+
+@section('pagescript')
+    <script>
+        var d = new Date();
+        d.setHours(0,0,0);
+        $('#timePicker').datetimepicker({
+            useCurrent: false,
+            format:'HH:mm:ss',
+            defaultDate: d,
+            showClose:true,
+            showTodayButton: true,
+            icons: {
+                up: "fa fa-chevron-up",
+                down: "fa fa-chevron-down",
+                today: "fa fa-clock fa-regular",
+                close: "fa fa-times",
+            }
+        })
+        
+        // var d = new Date();
+        // d.setHours(0,0,0);
+        // $('#adstimePicker').datetimepicker({
+        //     useCurrent: false,
+        //     format:'HH:mm:ss',
+        //     defaultDate: d,
+        //     showClose:true,
+        //     showTodayButton: true,
+        //     icons: {
+        //         up: "fa fa-chevron-up",
+        //         down: "fa fa-chevron-down",
+        //         today: "fa fa-clock fa-regular",
+        //         close: "fa fa-times",
+        //     }
+        // })
+
+        function save_video() {
+
+           
+
+                var formData = new FormData($("#save_video")[0]);
+                $("#dvloader").show();
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route("admin.videos.store") }}',
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function(resp) {
+                        $("#dvloader").hide();
+                        get_responce_message(resp, 'save_video', '{{ route("admin.videos.videos") }}');
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        $("#dvloader").hide();
+                        toastr.error(errorThrown, textStatus);
+                    }
+                });
+           
+        }
+
+        $(document).ready(function() {
+            $("#category_id").select2({placeholder: "{{__('label.select_category')}}"});
+            $("#language_id").select2({placeholder: "{{__('label.select_language')}}"});
+            $("#cast_id").select2({placeholder: "{{__('label.select_cast')}}"});
+
+            $(".url_box").hide();
+            $('#video_upload_type').change(function() {
+                var optionValue = $(this).val();
+
+                if (optionValue == 'server_video') {
+                    $(".video_box").show();
+                    $(".url_box").hide();
+                } else {
+                    $(".url_box").show();
+                    $(".video_box").hide();
+                }
+
+                if (optionValue == 'server_video') {
+                    $(".Is_Download").show();
+                } else {
+                    $(".Is_Download").hide();
+                }
+            });
+
+            $(".subtitle_url_box").hide();
+            $('#subtitle_type').change(function() {
+                var optionValue = $(this).val();
+
+                if (optionValue == 'server_video') {
+                    $(".subtitle_box").show();
+                    $(".subtitle_url_box").hide();
+                } else {
+                    $(".subtitle_url_box").show();
+                    $(".subtitle_box").hide();
+                }
+            });
+
+            $(".trailer_url_box").hide();
+            $('#trailer_type').change(function() {
+                var optionValue = $(this).val();
+
+                if (optionValue == 'server_video') {
+                    $(".trailer_box").show();
+                    $(".trailer_url_box").hide();
+                } else {
+                    $(".trailer_url_box").show();
+                    $(".trailer_box").hide();
+                }
+            });
+
+            $(".rent_price").hide();
+            $('input[type=radio][name=is_rent]').change(function() {
+                if (this.value == 1) {
+                    $(".rent_price").show();
+                }
+                else if (this.value == 0) {
+                    $(".rent_price").hide();
+                }
+            });
+        });
+
+        
+       
+    </script>
 
 
     <!-- Video uploads  -->
@@ -655,6 +784,425 @@ function uploadVideo1080() {
 
     xhr.send(formData);
 }
+
+
+var baseUrl = jQuery('#base_url').val();
+
+/************ chunk video upload (320 px)*******/
+var datafile = new plupload.Uploader({
+    runtimes: 'html5,flash,silverlight,html4',
+    browse_button: 'uploadFile', // you can pass in id...
+    container: document.getElementById('container'), // ... or DOM Element itself
+    chunk_size: '1mb',
+    url: baseUrl + '/admin/video/saveChunk',
+    max_file_count: 1,
+    unique_names: true,
+    send_file_name: true,
+    multi_selection: false,
+    filters: {
+        mime_types: [
+            { title: "Content files", extensions: "mp4" },
+        ],
+        prevent_duplicates: true
+    },
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    init: {
+        PostInit: function () {
+            document.getElementById('filelist').innerHTML = '';
+            document.getElementById('upload').onclick = function () {
+                datafile.start();
+                return false;
+            };
+        },
+        FilesAdded: function (up, files) {
+            plupload.each(files, function (file) {
+                document.getElementById('filelist').innerHTML += '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
+            });
+        },
+        UploadProgress: function (up, file) {
+            document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+        },
+        FileUploaded: function (up, file, info) {
+            var response = JSON.parse(info.response);
+            if (response.result) {
+                jQuery('#mp3_file_name').val(response.result);
+            } else if (file.target_name) {
+                jQuery('#mp3_file_name').val(file.target_name);
+            }
+        },
+        Error: function (up, err) {
+            document.getElementById('console').innerHTML += "\nError #" + err.code + ": " + err.message;
+        }
+    }
+});
+datafile.init();
+/***********************************************/
+
+/************ chunk video upload (480 px)*******/
+var datafile1 = new plupload.Uploader({
+    runtimes: 'html5,flash,silverlight,html4',
+    browse_button: 'uploadFile1', // you can pass in id...
+    container: document.getElementById('container1'), // ... or DOM Element itself
+    chunk_size: '1mb',
+    url: baseUrl + '/admin/video/saveChunk',
+    max_file_count: 1,
+    unique_names: true,
+    send_file_name: true,
+    multi_selection: false,
+    filters: {
+        mime_types: [
+            { title: "Content files", extensions: "mp4" },
+        ],
+        prevent_duplicates: true
+    },
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    init: {
+        PostInit: function () {
+            document.getElementById('filelist1').innerHTML = '';
+            document.getElementById('upload1').onclick = function () {
+                datafile1.start();
+                return false;
+            };
+        },
+        FilesAdded: function (up, files) {
+            plupload.each(files, function (file) {
+                document.getElementById('filelist1').innerHTML += '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
+            });
+        },
+        UploadProgress: function (up, file) {
+            document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+        },
+        FileUploaded: function (up, file, info) {
+            var response = JSON.parse(info.response);
+            if (response.result) {
+                jQuery('#mp3_file_name1').val(response.result);
+            } else if (file.target_name) {
+                jQuery('#mp3_file_name1').val(file.target_name);
+            }
+        },
+        Error: function (up, err) {
+            document.getElementById('console1').innerHTML += "\nError #" + err.code + ": " + err.message;
+        }
+    }
+});
+datafile1.init();
+/***********************************************/
+
+/************ chunk video upload (720 px)*******/
+var datafile2 = new plupload.Uploader({
+    runtimes: 'html5,flash,silverlight,html4',
+    browse_button: 'uploadFile2', // you can pass in id...
+    container: document.getElementById('container2'), // ... or DOM Element itself
+    chunk_size: '1mb',
+    url: baseUrl + '/admin/video/saveChunk',
+    max_file_count: 1,
+    unique_names: true,
+    send_file_name: true,
+    multi_selection: false,
+    filters: {
+        mime_types: [
+            { title: "Content files", extensions: "mp4" },
+        ],
+        prevent_duplicates: true
+    },
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    init: {
+        PostInit: function () {
+            document.getElementById('filelist2').innerHTML = '';
+            document.getElementById('upload2').onclick = function () {
+                datafile2.start();
+                return false;
+            };
+        },
+        FilesAdded: function (up, files) {
+            plupload.each(files, function (file) {
+                document.getElementById('filelist2').innerHTML += '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
+            });
+        },
+        UploadProgress: function (up, file) {
+            document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+        },
+        FileUploaded: function (up, file, info) {
+            var response = JSON.parse(info.response);
+            if (response.result) {
+                jQuery('#mp3_file_name2').val(response.result);
+            } else if (file.target_name) {
+                jQuery('#mp3_file_name2').val(file.target_name);
+            }
+        },
+        Error: function (up, err) {
+            document.getElementById('console2').innerHTML += "\nError #" + err.code + ": " + err.message;
+        }
+    }
+});
+datafile2.init();
+/***********************************************/
+
+/************ chunk video upload (1080 px)******/
+var datafile3 = new plupload.Uploader({
+    runtimes: 'html5,flash,silverlight,html4',
+    browse_button: 'uploadFile3', // you can pass in id...
+    container: document.getElementById('container3'), // ... or DOM Element itself
+    chunk_size: '1mb',
+    url: baseUrl + '/admin/video/saveChunk',
+    max_file_count: 1,
+    unique_names: true,
+    send_file_name: true,
+    multi_selection: false,
+    filters: {
+        mime_types: [
+            { title: "Content files", extensions: "mp4" },
+        ],
+        prevent_duplicates: true
+    },
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    init: {
+        PostInit: function () {
+            document.getElementById('filelist3').innerHTML = '';
+            document.getElementById('upload3').onclick = function () {
+                datafile3.start();
+                return false;
+            };
+        },
+        FilesAdded: function (up, files) {
+            plupload.each(files, function (file) {
+                document.getElementById('filelist3').innerHTML += '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
+            });
+        },
+        UploadProgress: function (up, file) {
+            document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+        },
+        FileUploaded: function (up, file, info) {
+            var response = JSON.parse(info.response);
+            if (response.result) {
+                jQuery('#mp3_file_name3').val(response.result);
+            } else if (file.target_name) {
+                jQuery('#mp3_file_name3').val(file.target_name);
+            }
+        },
+        Error: function (up, err) {
+            document.getElementById('console3').innerHTML += "\nError #" + err.code + ": " + err.message;
+        }
+    }
+});
+datafile3.init();
+/***********************************************/
+
+/************ Trailer ************************/
+var datafile5 = new plupload.Uploader({
+    runtimes: 'html5,flash,silverlight,html4',
+    browse_button: 'uploadFile5', // you can pass in id...
+    container: document.getElementById('container5'), // ... or DOM Element itself
+    chunk_size: '1mb',
+    url: baseUrl + '/admin/video/saveChunk',
+    max_file_count: 1,
+    unique_names: true,
+    send_file_name: true,
+    multi_selection: false,
+    filters: {
+        mime_types: [
+            { title: "Content files", extensions: "mp4" },
+        ],
+        prevent_duplicates: true
+    },
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    init: {
+        PostInit: function () {
+            document.getElementById('filelist5').innerHTML = '';
+            document.getElementById('upload5').onclick = function () {
+                datafile5.start();
+                return false;
+            };
+        },
+        FilesAdded: function (up, files) {
+            plupload.each(files, function (file) {
+                document.getElementById('filelist5').innerHTML += '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
+            });
+        },
+        UploadProgress: function (up, file) {
+            document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+        },
+        FileUploaded: function (up, file, info) {
+            var response = JSON.parse(info.response);
+            if (response.result) {
+                jQuery('#mp3_file_name5').val(response.result);
+            } else if (file.target_name) {
+                jQuery('#mp3_file_name5').val(file.target_name);
+            }
+        },
+        Error: function (up, err) {
+            document.getElementById('console5').innerHTML += "\nError #" + err.code + ": " + err.message;
+        }
+    }
+});
+datafile5.init();
+/***********************************************/
+
+/************ subtitle_1 ************************/
+var datafile4 = new plupload.Uploader({
+    runtimes: 'html5,flash,silverlight,html4',
+    browse_button: 'uploadFile4', // you can pass in id...
+    container: document.getElementById('container4'), // ... or DOM Element itself
+    chunk_size: '1mb',
+    url: baseUrl + '/admin/video/saveChunk',
+    max_file_count: 1,
+    unique_names: true,
+    send_file_name: true,
+    multi_selection: false,
+    filters: {
+        mime_types: [
+            { title: "Content files", extensions: "mp4" },
+        ],
+        prevent_duplicates: true
+    },
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    init: {
+        PostInit: function () {
+            document.getElementById('filelist4').innerHTML = '';
+            document.getElementById('upload4').onclick = function () {
+                datafile4.start();
+                return false;
+            };
+        },
+        FilesAdded: function (up, files) {
+            plupload.each(files, function (file) {
+                document.getElementById('filelist4').innerHTML += '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
+            });
+        },
+        UploadProgress: function (up, file) {
+            document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+        },
+        FileUploaded: function (up, file, info) {
+            var response = JSON.parse(info.response);
+            if (response.result) {
+                jQuery('#mp3_file_name4').val(response.result);
+            } else if (file.target_name) {
+                jQuery('#mp3_file_name4').val(file.target_name);
+            }
+        },
+        Error: function (up, err) {
+            document.getElementById('console4').innerHTML += "\nError #" + err.code + ": " + err.message;
+        }
+    }
+});
+datafile4.init();
+/***********************************************/
+
+/************ subtitle_2 ************************/
+var datafile6 = new plupload.Uploader({
+    runtimes: 'html5,flash,silverlight,html4',
+    browse_button: 'uploadFile6', // you can pass in id...
+    container: document.getElementById('container6'), // ... or DOM Element itself
+    chunk_size: '1mb',
+    url: baseUrl + '/admin/video/saveChunk',
+    max_file_count: 1,
+    unique_names: true,
+    send_file_name: true,
+    multi_selection: false,
+    filters: {
+        mime_types: [
+            { title: "Content files", extensions: "mp4" },
+        ],
+        prevent_duplicates: true
+    },
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    init: {
+        PostInit: function () {
+            document.getElementById('filelist6').innerHTML = '';
+            document.getElementById('upload6').onclick = function () {
+                datafile6.start();
+                return false;
+            };
+        },
+        FilesAdded: function (up, files) {
+            plupload.each(files, function (file) {
+                document.getElementById('filelist6').innerHTML += '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
+            });
+        },
+        UploadProgress: function (up, file) {
+            document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+        },
+        FileUploaded: function (up, file, info) {
+            var response = JSON.parse(info.response);
+            if (response.result) {
+                jQuery('#mp3_file_name6').val(response.result);
+            } else if (file.target_name) {
+                jQuery('#mp3_file_name6').val(file.target_name);
+            }
+        },
+        Error: function (up, err) {
+            document.getElementById('console6').innerHTML += "\nError #" + err.code + ": " + err.message;
+        }
+    }
+});
+datafile6.init();
+/***********************************************/
+
+/************ subtitle_3 ************************/
+var datafile7 = new plupload.Uploader({
+    runtimes: 'html5,flash,silverlight,html4',
+    browse_button: 'uploadFile7', // you can pass in id...
+    container: document.getElementById('container7'), // ... or DOM Element itself
+    chunk_size: '1mb',
+    url: baseUrl + '/admin/video/saveChunk',
+    max_file_count: 1,
+    unique_names: true,
+    send_file_name: true,
+    multi_selection: false,
+    filters: {
+        mime_types: [
+            { title: "Content files", extensions: "mp4" },
+        ],
+        prevent_duplicates: true
+    },
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    init: {
+        PostInit: function () {
+            document.getElementById('filelist7').innerHTML = '';
+            document.getElementById('upload7').onclick = function () {
+                datafile7.start();
+                return false;
+            };
+        },
+        FilesAdded: function (up, files) {
+            plupload.each(files, function (file) {
+                document.getElementById('filelist7').innerHTML += '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
+            });
+        },
+        UploadProgress: function (up, file) {
+            document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+        },
+        FileUploaded: function (up, file, info) {
+            var response = JSON.parse(info.response);
+            if (response.result) {
+                jQuery('#mp3_file_name7').val(response.result);
+            } else if (file.target_name) {
+                jQuery('#mp3_file_name7').val(file.target_name);
+            }
+        },
+        Error: function (up, err) {
+            document.getElementById('console7').innerHTML += "\nError #" + err.code + ": " + err.message;
+        }
+    }
+});
+datafile7.init();
+/***********************************************/
 </script>
 
 @endsection

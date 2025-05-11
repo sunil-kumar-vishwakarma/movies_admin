@@ -2,7 +2,7 @@
 @section('title', 'Movie | Home ')
 @section('content')
     <main>
-      <section class="hero">
+      <!-- <section class="hero">
         <div class="carousel">
           <div
             class="slide active"
@@ -44,51 +44,111 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> -->
+
+      <section class="hero">
+  <div class="carousel">
+    <img id="carouselImage" src="{{ asset('/' . $banner[0]->thumbnail_image) }}" class="slide" alt="Image">
+    <div class="hero-content">
+      <h1 id="carouselTitle">{{ $banner[0]->name }}</h1>
+      <p id="carouselCategory">{{ $banner[0]->category }}</p>
+      <button class="watch-btn" id="watchBtn">▶ Watch Now</button>
+      <video id="videoPlayer" width="640" height="360" controls style="display: none; margin-top: 20px;">
+        <source id="videoSource" src="" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<script>
+  const banners = @json($banner);
+  let current = 0;
+
+  const img = document.getElementById('carouselImage');
+  const title = document.getElementById('carouselTitle');
+  const category = document.getElementById('carouselCategory');
+  const watchBtn = document.getElementById('watchBtn');
+  const videoPlayer = document.getElementById('videoPlayer');
+  const videoSource = document.getElementById('videoSource');
+
+  function updateSlide(index) {
+    const data = banners[index];
+    img.src = `/${data.thumbnail_image}`;
+    title.textContent = data.name;
+    category.textContent = data.category;
+
+    // Remove video (if any playing)
+    videoPlayer.style.display = 'none';
+    videoSource.src = '';
+    videoPlayer.load();
+
+    // Update watch button action
+    watchBtn.onclick = () => {
+      videoSource.src = `/${data.upload_link}`;
+      videoPlayer.style.display = 'block';
+      videoPlayer.load();
+      videoPlayer.play();
+    };
+  }
+
+  setInterval(() => {
+    current = (current + 1) % banners.length;
+    updateSlide(current);
+  }, 5000);
+
+  // Init first slide
+  updateSlide(current);
+</script>
       <br />
 
    <div class="box">
-      <section class="shows-section">
+      <!-- <section class="shows-section">
         <div class="shows">
           <h2>Live Streaming</h2>
           <a href="allshow.html" class="view-all">View All</a>
-        </div>
+        </div> -->
 
-        <div class="show-movies">
+        <!-- <div class="show-movies">
           <div class="movie-slider" id="kid">
+            @foreach($livevideo as $rows)
             <div class="movie-item">
-              <a href="watch.html"><img src="image/chidiyaghar.webp" alt="tom&jerry" /></a>
-              <div class="movie-title">Kapil Sharma Show</div>
+              <a href="watch.html"><img src="{{ asset('/' . $rows->thumbnail_image) }}" alt="Popup Movie Poster">
+                  
+                </a>
+              <div class="movie-title">{{$rows->name}}</div>
             </div>
-            <div class="movie-item">
+            @endforeach -->
+            <!-- <div class="movie-item">
               <a href="watch.html"><img src="image/tarakmehta.webp" alt="mayanagri" /></a>
               <div class="movie-title">Kapil Sharma Show</div>
             </div>
             <div class="movie-item">
               <a href="watch.html"><img src="image/shakalaka.png" alt="doremon" /></a>
               <div class="movie-title">Kapil Sharma Show</div>
-            </div>
-          </div>
+            </div> -->
+          <!-- </div>
         </div>
-      </section>
+      </section> -->
 
       <section class="movie-section">
         <h2>Best TVShow</h2>
         <div class="movies" id="shows">
+          @foreach($tvshow as $rows)
           <div class="movie">
-            <img src="image/baalveer.webp" alt="URI Movie" />
+            <img src="{{ asset('/' . $rows->thumbnail_image) }}" alt="URI Movie" />
             <div class="overlay">
               <div class="play-container">
                 <a href="watch.html"><div class="play-button">▶</div></a>
                 <div class="popup">
                   <div>Movie Title: URI</div>
-                  <img src="image/baalveer.webp" alt="Popup Movie Poster" />
+                  <img src="{{ asset('/' . $rows->thumbnail_image) }}" alt="Popup Movie Poster">
+                  
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="movie">
+      @endforeach
+          <!-- <div class="movie">
             <img src="image/akbar.webp" alt="Bhuj" />
             <div class="overlay">
               <div class="play-container">
@@ -177,7 +237,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </section>
 </div>

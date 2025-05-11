@@ -35,6 +35,7 @@
                     </div>
 
                     <!-- Static Video Card 1 -->
+                     @foreach($livevideo as $rows)
                     <div class="video-card">
                         <div class="video-image">
                             <div class="video-card-overlay">
@@ -46,17 +47,20 @@
                                     <button class="delete-btn" id="open-delete-modal"><i class="fas fa-trash"></i></button>
                                 </div>
                             </div>
-                            <img src="https://img.wprost.pl/img/avengers-endgame-recenzja/94/5f/85b10425332b90b0073d9cdb01c0.webp"
-                                 alt="Thumbnail" class="video-thumbnail">
+                            <img src="{{ asset('/' . $rows->thumbnail_image) }}" alt="Popup Movie Poster"  class="video-thumbnail">
+                  
+                            <!-- <img src="https://img.wprost.pl/img/avengers-endgame-recenzja/94/5f/85b10425332b90b0073d9cdb01c0.webp" -->
+                                 <!-- alt="Thumbnail" class="video-thumbnail"> -->
                         </div>
                         <div class="video-info">
-                            <div class="video-title">Avengers: Endgame</div>
+                            <div class="video-title">Avengers: {{$rows->name}}</div>
                             <button class="toggle-show-btn">Show</button>
                         </div>
                     </div>
+                    @endforeach
 
                     <!-- Static Video Card 2 -->
-                    <div class="video-card">
+                    <!-- <div class="video-card">
                         <div class="video-image">
                             <div class="video-card-overlay">
                                 <button class="play-btn"><i class="fas fa-play"></i></button>
@@ -74,7 +78,7 @@
                             <div class="video-title">The Amazing Spider-Man</div>
                             <button class="toggle-show-btn">Show</button>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- Add more video-cards as needed -->
                 </div>

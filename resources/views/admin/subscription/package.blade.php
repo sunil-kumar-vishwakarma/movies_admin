@@ -22,16 +22,29 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($params as $rows)
                 <tr>
-                    <td>1</td>
-                    <td>Package Name</td>
-                    <td>$19.99</td>
-                    <td>01:23:45</td>
+                    <td>{{$rows->id}}</td>
+                    <td>{{$rows->name}}</td>
+                    <td>${{$rows->price}}</td>
+                    <td>{{$rows->duration}}</td>
                     <td>
-                        <button class="edit-btn" id="open-edit-modal"><i class="fas fa-edit"></i></button>
-                        <button class="delete-btn" id="open-delete-modal"><i class="fas fa-trash"></i></button>
+                        <button id="open-edit-modal" class="btn btn-sm btn-primary edit-btn" 
+                                data-id="{{ $rows->id }}" 
+                                data-name="{{ $rows->name }}"
+                                data-price="{{ $rows->price}}" data-duration="{{ $rows->duration}}">
+                            <i class="fas fa-edit"></i>
+                        </button>
+
+                        <button id="open-delete-modal" class="btn btn-sm btn-danger delete-btn" 
+                                data-id="{{ $rows->id }}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        <!-- <button class="edit-btn" id="open-edit-modal"><i class="fas fa-edit"></i></button>
+                        <button class="delete-btn" id="open-delete-modal"><i class="fas fa-trash"></i></button> -->
                     </td>
                 </tr>
+                @endforeach
                 <!-- Add more rows as needed -->
             </tbody>
         </table>
@@ -58,7 +71,8 @@
         <div class="modal-content">
             <span class="close" id="close-add-modal">&times;</span>
             <h2>Add New Package</h2>
-            <form id="add-form">
+            <form id="add-form" enctype="multipart/form-data">
+            @csrf
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" placeholder="Enter Name" required>
@@ -69,7 +83,7 @@
                 </div>
                 <div class="form-group">
                     <label for="duration">Duration</label>
-                    <input type="text" id="duration" name="duration" placeholder="HHH:mm:ss" required>
+                    <input type="date" id="duration" name="duration" placeholder="HHH:mm:ss" required>
                 </div>
                 <button type="submit" class="submit-btn">Submit</button>
             </form>
@@ -84,15 +98,17 @@
             <form id="edit-form">
                 <div class="form-group">
                     <label for="edit-name">Name</label>
-                    <input type="text" id="edit-name" name="edit_name" placeholder="Enter Name" required>
+                    <input type="text" id="edit-name" name="name" placeholder="Enter Name" required>
                 </div>
                 <div class="form-group">
                     <label for="edit-price">Price</label>
-                    <input type="number" id="edit-price" name="edit_price" step="0.01" placeholder="Enter Price" required>
+                    <input type="number" id="edit-price" name="price" step="0.01" placeholder="Enter Price" required>
                 </div>
                 <div class="form-group">
                     <label for="edit-duration">Duration</label>
-                    <input type="text" id="edit-duration" name="edit_duration" placeholder="HHH:mm:ss" required>
+                    <input type="text" id="edit-duration" name="duration" placeholder="HHH:mm:ss" required>
+                    <input type="hidden" id="edit-id" name="id" placeholder="Enter Name" required>
+           
                 </div>
                 <button type="submit" class="submit-btn">Update</button>
             </form>
@@ -104,13 +120,159 @@
         <div class="modal-content">
             <span class="close" id="close-delete-modal">&times;</span>
             <div class="delete-content">
+                 <form id="delete-form">
+            <input type="hidden" id="delete-id" name="id">
                 <h2>Delete Package</h2>
                 <p>Are you sure you want to delete this?</p>
                 <div class="button-group">
-                    <button type="button" class="submit-btn delete-confirm">Confirm</button>
+                    <button type="submit" class="submit-btn delete-confirm">Confirm</button>
                     <button type="button" class="no-btn delete-cancel">No</button>
                 </div>
+            </form>
             </div>
         </div>
     </div>
+    
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <script>
+$('#add-form').on('submit', function(e) {
+    e.preventDefault();
+
+    let formData = new FormData(this);
+
+    $.ajax({
+        url: "{{ route('admin.subscription.package.store') }}",
+        method: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(response) {
+            $('#response-message').html('<p style="color:green;">Video Type created successfully!</p>');
+
+            // Reset form
+            $('#add-form')[0].reset();
+            location.reload();
+            // Close modal
+            $('#add-modal').closeModal();
+        },
+        error: function(xhr) {
+            if (xhr.status === 422) {
+                let errors = xhr.responseJSON.errors;
+                let errorHtml = '<ul>';
+                $.each(errors, function(key, value) {
+                    errorHtml += '<li>' + value[0] + '</li>';
+                });
+                errorHtml += '</ul>';
+                $('#response-message').html('<div style="color:red;">' + errorHtml + '</div>');
+            } else {
+                $('#response-message').html('<p style="color:red;">Something went wrong!</p>');
+            }
+        }
+    });
+});
+</script>
+
+
+<script>
+$(document).ready(function () {
+
+    // Open Edit Modal
+    $('.edit-btn').click(function () {
+        let id = $(this).data('id');
+        $('#edit-id').val(id);
+        $('#edit-name').val($(this).data('name'));
+        $('#edit-price').val($(this).data('price'));
+        $('#edit-duration').val($(this).data('duration'));
+
+       
+        $('#editModal').modal('show');
+    });
+
+    
+    // Submit Edit Form
+$('#edit-form').submit(function (e) {
+    e.preventDefault();
+    
+    let formData = new FormData(this);
+    let id = $('#edit-id').val();
+// console.log(formData);
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        url: '/admin/subscription/package/update/' + id,
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (res) {
+            // $('#editModal').modal('hide');
+            // location.reload();
+            $('#edit-form')[0].reset();
+            location.reload();
+            // Close modal
+            $('#editModal').closeModal();
+
+        },
+        error: function (err) {
+            console.error(err);
+            alert('Update failed');
+        }
+    });
+});
+
+
+    // Open Delete Modal
+$('.delete-btn').click(function () {
+    $('#delete-id').val($(this).data('id')); // set hidden ID
+    $('#delete-modal').modal('show'); // show modal
+});
+
+// Cancel button
+$('.delete-cancel, #close-delete-modal').click(function () {
+    $('#delete-modal').modal('hide');
+});
+
+// Submit Delete
+$('#delete-form').submit(function (e) {
+    e.preventDefault();
+    let formData = new FormData(this);
+    let id = $('#delete-id').val();
+console.log(id);
+    $.ajax({
+        url: '/admin/subscription/package/destroy/' + id,
+        type: 'DELETE',
+       
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (res) {
+            if (res.success) {
+                $('#delete-form')[0].reset();
+                location.reload();
+                $('#delete-modal').modal('hide');
+            } else {
+                alert('Delete failed');
+            }
+        },
+        error: function (err) {
+            console.error(err);
+            alert('Error deleting item');
+        }
+    });
+});
+
+
+
+});
+</script>
+
 @endsection

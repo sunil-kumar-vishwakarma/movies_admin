@@ -9,6 +9,7 @@ class AdsVideo extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'name',
         'type',
         'upload_video',
         'category',
